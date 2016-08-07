@@ -1,0 +1,21 @@
+{
+  "name": "projeto_gustavo",
+  "version": "0.0.1",
+  "description": "projeto do gustavo",
+  "main": "package.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "victor fontana",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-uglify": "^2.0.0"
+  },
+  "dependencies": {
+    "browser-sync": "^2.14.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^2.0.0",
+    "http-server": "^0.9.0"
+  }
+}
