@@ -2,11 +2,11 @@
     'use strict';
 
     angular
-        .module('baseApp.work')
-        .controller('workCtrl', workCtrl)
+        .module('baseApp.admin')
+        .controller('categoriesCtrl', categoriesCtrl)
 
     /** @ngInject */
-    function workCtrl(){
+    function categoriesCtrl(){
         var vm = this;
         
         init();

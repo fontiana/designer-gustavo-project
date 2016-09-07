@@ -1,0 +1,9 @@
+<div class="main_login">
+    <div class="login_form">
+        <form ng-submit="lCtrl.login(lCtrl.email, lCtrl.password)" novalidate>
+            <input type="email" name="email" ng-model="lCtrl.email" placeholder="email" ng-maxlength="254" required>
+            <input type="password" name="password" ng-model="lCtrl.password" placeholder="senha" ng-minlength="6" ng-maxlength="50" required>
+            <input type="submit" value="Logar">
+        </form>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div id="wrapper" class="navbar-header">
+    <nav class="navbar navbar-default navbar-static-top">
+        <!-- LOGO -->
+        <p class="navbar-brand">Página Administrativa</p>
+        <!-- LEFT NAVBAR-->
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <a ui-sref="logout">Logout</a>
+            </li>
+        </ul>
+        <!-- SIDEBAR MENU -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapsecollapse" aria-expanded="false" aria-hidden="true">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a ui-sref="projects">Projetos</a>
+                    </li>
+                    <li>
+                        <a ui-sref="categories">Categorias</a>
+                    </li>
+                    <li>
+                        <a ui-sref="manageAbout">Gerenciar página sobre</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div id="page-wrapper">
+    <div ui-view>
+    </div>
+</div>

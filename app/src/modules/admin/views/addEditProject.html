@@ -1,0 +1,9 @@
+<form>
+    <label for="first_name" class="col-sm-2 control-label ng-binding">
+        First Name
+    </label>
+    <div ng-class="getCssClasses(entry)" class="ng-admin-field-first_name ng-admin-type-string col-sm-10 col-md-8 col-lg-7">
+        <input type="text" ng-model="pCtrl.name" id="name" name="name" ng-required="v.required" ng-minlength="0" ng-maxlength="99999999999999999">
+        <span ng-show="fieldHasValidation()" class="glyphicon form-control-feedback ng-hide glyphicon-ok" ng-class="fieldIsValid() ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
+    </div>
+</form>

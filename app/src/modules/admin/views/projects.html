@@ -1,0 +1,55 @@
+<div class="row list-header">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <div class="view-actions">
+                <a class="btn btn-default" ui-sref="addProject" href="#/admin/projects/add">
+                    <span>Adicionar projeto</span>
+                </a>
+            </div>
+            <h1 class="adminHeader">Projetos</h1>
+        </div>
+        <div class="row">
+        </div>
+        <div>
+            <div class="row list-view">
+                <div class="col-lg-12">
+                    <table class="grid table table-condensed table-hover table-stripped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="project in pCtrl.projects">
+                                <td>
+                                    <span>{{project.WORK_ID}}</span>
+                                </td>
+                                <td>
+                                    <span>{{project.WORK_NAME}}</span>
+                                </td>
+                                <td>
+                                    <span>{{project.WORK_DESCRIPTION}}</span>
+                                </td>
+                                <td>
+                                    <span>{{project.CATEGORY_NAME}}</span>
+                                </td>
+                                <td>
+                                    <a class="btn btn-default" ui-sref="editProject({{project.WORK_ID}})" href="{{project.hiperlink}}">
+                                        <span>Editar</span>
+                                    </a>
+                                    <a class="btn btn-default" ui-sref="deleteProject({{project.WORK_ID}})" href="{{project.hiperlink}}">
+                                        <span>Deletar</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
