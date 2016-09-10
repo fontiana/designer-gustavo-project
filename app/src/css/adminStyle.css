@@ -84,7 +84,8 @@
     background-color: #eee;
 }
 
-a:focus, a:hover {
+#wrapper a:focus, 
+#wrapper a:hover {
     color: #23527c;
     text-decoration: underline;
 }

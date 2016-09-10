@@ -8,7 +8,7 @@ exports.login = function (req, res) {
             senha: req.body.senha
         };
 
-        connection.query('SELECT USER_ID, EMAIL, PASSWORD, PASSWORD_SALT FROM USER WHERE EMAIL = ?', [user.email], function (err, result) {
+        connection.query('call db_dionisio.spFetchUserByEmail(?);', [user.email], function (err, result) {
             if (err) {
                 return res.status(400).json(err);
             }

@@ -6,6 +6,7 @@ var plumber = require('gulp-plumber');
 var cleanCSS = require('gulp-clean-css');
 
 var webFolder = '../web';
+var webImagesFolder = '../web/images';
 
 gulp.task('minifyJs', function () {
   gulp.src([
@@ -35,6 +36,14 @@ gulp.task('copyFiles', function () {
   ])
     .pipe(gulp.dest(webFolder));
 });
+
+gulp.task('copyImages', function () {
+  gulp.src([
+    'src/images/*.png'
+  ])
+    .pipe(gulp.dest(webImagesFolder));
+});
+
 
 gulp.task('minifyCSS', function () {
   gulp.src([
@@ -72,7 +81,7 @@ gulp.task('watch', function () {
   gulp.watch('src/css/*.css', ['minifyCSS']);
 });
 
-gulp.task('default', ['minifyJs', 'minifyDependenciesJs', 'copyFiles', 'minifyCSS', 'watch']);
+gulp.task('default', ['minifyJs', 'minifyDependenciesJs', 'copyFiles', 'copyImages', 'minifyCSS', 'watch']);
 
 // gulp.task('browser-sync', function () {
 //   browserSync.init({
