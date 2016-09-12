@@ -5,17 +5,17 @@
         .module('baseApp.admin')
         .controller('loginCtrl', loginCtrl)
 
-    loginCtrl.$inject = ["$http", "APIAdmin", '$state', 'authToken'];
+    loginCtrl.$inject = ["$http", 'appSettings', '$state', 'authToken'];
 
     /** @ngInject */
-    function loginCtrl($http, APIAdmin, $state, authToken) {
+    function loginCtrl($http, appSettings, $state, authToken) {
         var vm = this;
 
         vm.login = login;
 
         function login(email, senha) {
             var configHttp = {
-                url: APIAdmin + 'login',
+                url: appSettings.comunicacao.urlAdmin + 'login',
                 data: {
                     email: email,
                     senha: senha

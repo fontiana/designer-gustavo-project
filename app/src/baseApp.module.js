@@ -110,7 +110,11 @@
         'baseApp.security'
     ])
         .config(baseAppConfig)
-        .constant('API', 'http://localhost:3000/')
-        .constant('APIAdmin', 'http://localhost:3000/admin/');
+        .constant('appSettings', {
+            comunicacao: {
+                urlBackend: 'http://localhost:3000/',
+                urlAdmin: 'http://localhost:3000/admin/'
+            }
+        });
 
 } ());

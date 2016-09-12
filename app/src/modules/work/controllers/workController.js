@@ -5,10 +5,10 @@
         .module('baseApp.work')
         .controller('workCtrl', workCtrl)
 
-    workCtrl.$inject = ["$http", "API"];
+    workCtrl.$inject = ["$http", "appSettings"];
 
     /** @ngInject */
-    function workCtrl($http, API) {
+    function workCtrl($http, appSettings) {
         var vm = this;
         init();
 
@@ -22,7 +22,7 @@
         }
 
         function loadWorks() {
-            $http.get(API + 'work')
+            $http.get(appSettings.comunicacao.urlBackend + 'work')
                 .then(workSuccess)
                 .catch(workError);
 

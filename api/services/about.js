@@ -1,20 +1,10 @@
+var jwt = require('./jwt.js');
+
 exports.get = function (req, res) {
 	req.getConnection(function (err, connection) {
-		connection.query('SELECT TOP 1 FROM ABOUT', [], function (err, result) {
+		connection.query('call spFetchAbout();', [], function (err, result) {
 			if (err) return res.status(400).json();
-			return res.status(200).json(result);
-		});
-	});
-}
-
-exports.insert = function (req, res) {
-	var data = req.body;
-
-	req.getConnection(function (err, connection) {
-		connection.query('INSERT INTO ABOUT SET ?', [data], function (err, result) {
-			if (err) return res.status(400).json(err);
-
-			return res.status(200).json(result);
+			return res.status(200).json(result[0]);
 		});
 	});
 }
@@ -24,10 +14,10 @@ exports.update = function (req, res) {
 		id = req.params.id;
 
 	req.getConnection(function (err, connection) {
-		connection.query('UPDATE WORK ABOUT ? WHERE ABOUT_ID = ? ', [data, id], function (err, result) {
+		connection.query('call spUpdateAbout(?, ?)', [data, id], function (err, result) {
 			if (err) return res.status(400).json(err);
 
-			return res.status(200).json(result);
+			return res.status(200).json(result[0]);
 		});
 	});
 }

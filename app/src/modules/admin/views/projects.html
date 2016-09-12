@@ -35,13 +35,13 @@
                                     <span>{{project.WORK_DESCRIPTION}}</span>
                                 </td>
                                 <td>
-                                    <span>{{project.CATEGORY_NAME}}</span>
+                                    <span>{{project.CATEGORY_DESCRIPTION}}</span>
                                 </td>
                                 <td>
                                     <a class="btn btn-default" ui-sref="editProject({{project.WORK_ID}})" href="{{project.hiperlink}}">
                                         <span>Editar</span>
                                     </a>
-                                    <a class="btn btn-default" ui-sref="deleteProject({{project.WORK_ID}})" href="{{project.hiperlink}}">
+                                    <a class="btn btn-default" ng-click="pCtrl.deleteProject(project.WORK_ID)">
                                         <span>Deletar</span>
                                     </a>
                                 </td>

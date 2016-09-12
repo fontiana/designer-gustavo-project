@@ -1,9 +1,42 @@
-<form>
-    <label for="first_name" class="col-sm-2 control-label ng-binding">
-        First Name
-    </label>
-    <div ng-class="getCssClasses(entry)" class="ng-admin-field-first_name ng-admin-type-string col-sm-10 col-md-8 col-lg-7">
-        <input type="text" ng-model="pCtrl.name" id="name" name="name" ng-required="v.required" ng-minlength="0" ng-maxlength="99999999999999999">
-        <span ng-show="fieldHasValidation()" class="glyphicon form-control-feedback ng-hide glyphicon-ok" ng-class="fieldIsValid() ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <h1><span>Adicionar / Alterar projetos</span></h1>
+        </div>
     </div>
-</form>
+</div>
+<div class="row">
+    <form class="col-lg-12" ng-submit="pCtrl.save()">
+        <div>
+            <div class="form-field form-group">
+                <label for="first_name" class="col-sm-2 control-label">Nome</label>
+                <div class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7">
+                    <input type="text" ng-model="value" id="first_name" name="first_name" class="form-control" ng-minlength="0" ng-maxlength="99999">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="form-field form-group">
+                <label for="description" class="col-sm-2 control-label">Descrição</label>
+                <div class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7">
+                    <textarea id="description" name="description" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="form-field form-group">
+                <label for="category" class="col-sm-2 control-label">Category</label>
+                <div class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7">
+                    <select name="category" id="category" ng-model="pCtrl.categoryId">
+                        <option ng-repeat="category in pCtrl.categories" value="{{category.category_id}}">{{category.description}}</option>
+                    </select>   
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </form>
+</div>
