@@ -89,6 +89,20 @@
                 controller: 'categoriesCtrl',
                 controllerAs: 'cCtrl'
             })
+            .state('addCategory', {
+                parent: "admin",
+                url: "/admin/category/add",
+                templateUrl: '/admin/views/addEditCategory.html',
+                controller: 'addEditCategoryCtrl',
+                controllerAs: 'cCtrl'
+            })
+            .state('editCategory', {
+                parent: "admin",
+                url: "/admin/category/edit/:categoryId",
+                templateUrl: '/admin/views/addEditCategory.html',
+                controller: 'addEditCategoryCtrl',
+                controllerAs: 'cCtrl'
+            })
             .state('manageAbout', {
                 parent: "admin",
                 url: "/admin/manageAbout",

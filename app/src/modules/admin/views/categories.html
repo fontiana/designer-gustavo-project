@@ -1,0 +1,47 @@
+<div class="row list-header">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <div class="view-actions">
+                <a class="btn btn-default" ui-sref="addProject" href="#/admin/projects/add">
+                    <span>Adicionar categoria</span>
+                </a>
+            </div>
+            <h1 class="adminHeader">Categorias</h1>
+        </div>
+        <div class="row">
+        </div>
+        <div>
+            <div class="row list-view">
+                <div class="col-lg-12">
+                    <table class="grid table table-condensed table-hover table-stripped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Descrição</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="category in cCtrl.categories">
+                                <td>
+                                    <span>{{category.CATEGORY_ID}}</span>
+                                </td>
+                                <td>
+                                    <span>{{category.DESCRIPTION}}</span>
+                                </td>
+                                <td>
+                                    <a class="btn btn-default" ui-sref="editCategory({{category.CATEGORY_ID}})" href="{{category.hiperlink}}">
+                                        <span>Editar</span>
+                                    </a>
+                                    <a class="btn btn-default" ng-click="cCtrl.deleteCategory(project.WORK_ID)">
+                                        <span>Deletar</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
