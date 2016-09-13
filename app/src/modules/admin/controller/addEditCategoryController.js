@@ -1,19 +1,20 @@
-(function(){
+(function () {
     'use strict';
 
     angular
         .module('baseApp.admin')
         .controller('addEditCategoryCtrl', addEditProjectCtrl)
 
-    /** @ngInject */
-    function addEditProjectCtrl(){
+    addEditProjectCtrl.$inject = ["categoryServices"];
+
+    function addEditProjectCtrl(categoryServices) {
         var vm = this;
-        
+
         init();
 
-        function init(){
+        function init() {
         }
 
     }
 
-}());
+} ());

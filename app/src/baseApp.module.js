@@ -121,7 +121,8 @@
         'baseApp.email',
         'baseApp.work',
         'baseApp.admin',
-        'baseApp.security'
+        'baseApp.security',
+        'baseApp.services'
     ])
         .config(baseAppConfig)
         .constant('appSettings', {
