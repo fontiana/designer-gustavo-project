@@ -3,11 +3,11 @@
 
     angular
         .module('baseApp.admin')
-        .controller('addEditCategoryCtrl', addEditProjectCtrl)
+        .controller('editCategoryCtrl', editCategoryCtrl)
 
-    addEditProjectCtrl.$inject = ["categoryServices"];
+    editCategoryCtrl.$inject = ["categoryServices"];
 
-    function addEditProjectCtrl(categoryServices) {
+    function editCategoryCtrl(categoryServices) {
         var vm = this;
 
         init();
