@@ -4,9 +4,18 @@ var uglify = require('gulp-uglify');
 var browserSync = require('browser-sync').create();
 var plumber = require('gulp-plumber');
 var cleanCSS = require('gulp-clean-css');
+var path = require('path');
+var eslint = require('gulp-eslint');
 
 var webFolder = '../web';
 var webImagesFolder = '../web/images';
+
+// gulp.task('static-analysis', ["bootlint"], function() {
+//   return gulp.src(path.join())
+//         .pipe(eslint())
+//         .pipe(eslint.format())
+//         .pipe(eslint.failAfterError());
+// });
 
 gulp.task('minifyJs', function () {
   gulp.src([
