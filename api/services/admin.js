@@ -20,7 +20,7 @@ exports.login = function (req, res) {
 
             if (result[0] !== undefined) {
                 var passwordConvertido = bcrypt.hashSync(user.senha, result[0][0].PASSWORD_SALT);
-                if (passwordConvertido == result[0].PASSWORD) {
+                if (passwordConvertido == result[0][0].PASSWORD) {
                     var payload = {
                         iss: req.hostname,
                         sub: user.email

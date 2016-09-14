@@ -5,19 +5,17 @@
         .module('baseApp.services')
         .factory('categoryServices', categoryServices)
 
-    categoryServices.$ngInject = ["$http", "appSettings"];
+    categoryServices.$inject = ["$http", "appSettings"];
 
-    /** @ngInject */
     function categoryServices($http, appSettings) {
-
         return {
             getCategories: getCategories,
             insertCategory: insertCategory,
             updateCategory: updateCategory,
-            deteleCategory: deleteCategory
+            deleteCategory: deleteCategory
         }
 
-        function getCategory() {
+        function getCategories() {
             return $http.get(appSettings.comunicacao.urlBackend + 'category');
         }
 
@@ -29,7 +27,7 @@
             return $http.put(appSettings.comunicacao.urlBackend + 'category', { data: parameters });
         }
 
-        function deteleCategory(categoryId) {
+        function deleteCategory(categoryId) {
             return $http.delete(appSettings.comunicacao.urlBackend + 'category' + "/" + categoryId);
         }
     }
