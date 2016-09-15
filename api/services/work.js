@@ -10,7 +10,7 @@ exports.get = function (req, res) {
 }
 
 exports.getFromId = function (req, res) {
-	var id = req.params.id;
+	var id = req.params.projectId;
 	req.getConnection(function (err, connection) {
 		connection.query('call db_dionisio.spFetchProjectByID(?);', [id], function (err, result) {
 			if (err) return res.status(400).json(err);
@@ -34,7 +34,6 @@ exports.delete = function (req, res) {
 exports.insert = function (req, res) {
     req.getConnection(function (err, connection) {
         var projectId = req.body.projectId;
-
 		var resultado = "";
 
         connection.query('call db_dionisio.spInsertProject(?);', [projectId], function (err, result) {

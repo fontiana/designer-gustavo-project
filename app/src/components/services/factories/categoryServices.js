@@ -12,23 +12,31 @@
             getCategories: getCategories,
             insertCategory: insertCategory,
             updateCategory: updateCategory,
-            deleteCategory: deleteCategory
+            deleteCategory: deleteCategory,
+            getCategoryById: getCategoryById
         }
 
         function getCategories() {
             return $http.get(appSettings.comunicacao.urlBackend + 'category');
         }
 
-        function insertCategory(parameters) {
-            return $http.post(appSettings.comunicacao.urlBackend + 'category', { data: parameters });
+        function insertCategory(data) {
+            return $http.post(appSettings.comunicacao.urlBackend + 'category', data);
         }
 
-        function updateCategory(parameters) {
-            return $http.put(appSettings.comunicacao.urlBackend + 'category', { data: parameters });
+        function updateCategory(categoryId, data) {
+            var params = { params: { categoryId: categoryId } };
+            return $http.put(appSettings.comunicacao.urlBackend + 'category' + "/" + categoryId, data, params);
         }
 
         function deleteCategory(categoryId) {
-            return $http.delete(appSettings.comunicacao.urlBackend + 'category' + "/" + categoryId);
+            var params = { params: { categoryId: categoryId } };
+            return $http.delete(appSettings.comunicacao.urlBackend + 'category' + "/" + categoryId, params);
+        }
+
+        function getCategoryById(categoryId) {
+            var params = { params: { categoryId: categoryId } };
+            return $http.get(appSettings.comunicacao.urlBackend + 'category', + "/" + categoryId, params);
         }
     }
 
