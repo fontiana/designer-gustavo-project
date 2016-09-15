@@ -21,7 +21,7 @@ exports.getFromId = function (req, res) {
 }
 
 exports.insert = function (req, res) {
-	var data = req.body;
+	var data = req.body.description;
 
 	req.getConnection(function (err, connection) {
 		connection.query('call spInsertCategory(?)', [data], function (err, result) {
