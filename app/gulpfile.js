@@ -9,13 +9,14 @@ var eslint = require('gulp-eslint');
 
 var webFolder = '../web';
 var webImagesFolder = '../web/images';
+var dirAplication = "./src";
 
-// gulp.task('static-analysis', ["bootlint"], function() {
-//   return gulp.src(path.join())
-//         .pipe(eslint())
-//         .pipe(eslint.format())
-//         .pipe(eslint.failAfterError());
-// });
+gulp.task('static-analysis', function() {
+  return gulp.src([path.join(dirAplication, "**/*.js"), ("!", path.join(webFolder, "**"))])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
 
 gulp.task('minifyJs', function () {
   gulp.src([
