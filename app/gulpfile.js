@@ -12,8 +12,8 @@ var webImagesFolder = '../web/images';
 var dirAplication = "./src";
 
 gulp.task('static-analysis', function() {
-  return gulp.src([path.join(dirAplication, "**/*.js"), ("!", path.join(webFolder, "**"))])
-        .pipe(eslint())
+  return gulp.src([path.join(dirAplication, "**/*.js")])
+        .pipe(eslint({configFile: '.eslintrc.json'}))
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
 });
@@ -91,7 +91,7 @@ gulp.task('watch', function () {
   gulp.watch('src/css/*.css', ['minifyCSS']);
 });
 
-gulp.task('default', ['minifyJs', 'minifyDependenciesJs', 'copyFiles', 'copyImages', 'minifyCSS', 'watch']);
+gulp.task('default', ['static-analysis', 'minifyJs', 'minifyDependenciesJs', 'copyFiles', 'copyImages', 'minifyCSS', 'watch']);
 
 // gulp.task('browser-sync', function () {
 //   browserSync.init({

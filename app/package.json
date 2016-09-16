@@ -16,6 +16,8 @@
     "gulp-eslint": "^3.0.1"
   },
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^1.0.0-beta.2",
     "browser-sync": "^2.14.0",
     "gulp-clean-css": "^2.0.12",
     "gulp-concat": "^2.6.0",
