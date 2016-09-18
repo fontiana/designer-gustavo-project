@@ -32,9 +32,9 @@
 
             function workSuccess(response) {
                 var projects = [];
-                angular.forEach(response.data, function (value, key) {
-                    value.hiperlink = "#admin/projects/edit/" + value.WORK_ID;
-                    projects.push(value);
+                angular.forEach(response.data, function (project) {
+                    project.hiperlink = "#admin/projects/edit/" + project.WORK_ID;
+                    projects.push(project);
                 });
 
                 vm.projects = projects;
@@ -51,7 +51,7 @@
                 .then(workSuccess)
                 .catch(workError);
 
-            function workSuccess(response) {
+            function workSuccess() {
                 $state.reload();
             }
 

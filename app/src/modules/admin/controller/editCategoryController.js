@@ -16,7 +16,7 @@
 
         function init() {
             vm.categoryId = $stateParams.categoryId;
-            categoryServices.getCategoryById(category)
+            categoryServices.getCategoryById(vm.categoryId)
                 .then(function (response) {
                     vm.description = response.data.CATEGORY_DESCRIPTION;
                 })
@@ -30,9 +30,9 @@
                 description: vm.description
             };
 
-            categoryServices.insertCategory(vm.categoryId, description)
+            categoryServices.insertCategory(vm.categoryId, parameters)
                 .then(function (response) {
-                    console.log(msg);
+                    console.log(response);
                 })
                 .catch(function (msg) {
                     console.log(msg);

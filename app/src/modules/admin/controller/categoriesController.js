@@ -5,10 +5,10 @@
         .module('baseApp.admin')
         .controller('categoriesCtrl', categoriesCtrl)
 
-    categoriesCtrl.$inject = ["categoryServices"];
+    categoriesCtrl.$inject = ["categoryServices", "$state"];
 
     /** @ngInject */
-    function categoriesCtrl(categoryServices) {
+    function categoriesCtrl(categoryServices, $state) {
         var vm = this;
         vm.deleteCategory = deleteCategory;
 
@@ -26,7 +26,7 @@
 
         function deleteCategory(categoryId) {
             categoryServices.deleteCategory(categoryId)
-                .then(function (response) {
+                .then(function () {
                     $state.reload();
                 })
                 .catch(function (msg) {

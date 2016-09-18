@@ -7,7 +7,7 @@
 
     /** @ngInject */
     function workDetailCtrl(){
-        var vm = this;
+        // var vm = this;
         
         init();
 

@@ -31,7 +31,7 @@
                 $state.go('main');
             }
 
-            function loginError(msg) {
+            function loginError() {
                 console.log('Dados informados inválidos');
             }
         }

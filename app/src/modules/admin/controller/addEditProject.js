@@ -7,7 +7,7 @@
 
     /** @ngInject */
     function addEditProjectCtrl(){
-        var vm = this;
+        // var vm = this;
         
         init();
 

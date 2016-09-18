@@ -9,7 +9,6 @@
 
     /** @ngInject */
     function mainCtrl(authToken, $state) {
-        var vm = this;
 
         init();
         

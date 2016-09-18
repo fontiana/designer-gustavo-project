@@ -15,7 +15,8 @@ gulp.task('static-analysis', function() {
   return gulp.src([path.join(dirAplication, "**/*.js")])
         .pipe(eslint({configFile: '.eslintrc.json'}))
         .pipe(eslint.format())
-        .pipe(eslint.failAfterError());
+        .pipe(eslint.failAfterError())
+        .on('erro', function() { process.exit(); });
 });
 
 gulp.task('minifyJs', function () {
@@ -54,7 +55,6 @@ gulp.task('copyImages', function () {
     .pipe(gulp.dest(webImagesFolder));
 });
 
-
 gulp.task('minifyCSS', function () {
   gulp.src([
     'src/css/*.css'
@@ -85,7 +85,7 @@ gulp.task('minifyDependenciesJs', function () {
 
 gulp.task('watch', function () {
   gulp.watch('src/*.js', ['minifyJs']);
-  gulp.watch('src/modules/**/*.js', ['minifyJs']);
+  gulp.watch('src/modules/**/*.js', ['minifyJs', 'static-analysis']);
   gulp.watch('src/*.html', ['copyFiles']);
   gulp.watch('src/modules/**/*.html', ['copyFiles']);
   gulp.watch('src/css/*.css', ['minifyCSS']);

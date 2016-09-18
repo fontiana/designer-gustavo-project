@@ -18,9 +18,9 @@
                 description: vm.description
             };
 
-            categoryServices.insertCategory(description)
+            categoryServices.insertCategory(parameters)
                 .then(function (response) {
-                    console.log(msg);
+                    console.log(response);
                 })
                 .catch(function (msg) {
                     console.log(msg);

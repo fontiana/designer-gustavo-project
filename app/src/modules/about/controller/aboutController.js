@@ -12,8 +12,9 @@
         init();
 
         function init(){
+            vm.description = "";
+            vm.banner = "";
         }
-
     }
 
 }());
