@@ -35,8 +35,8 @@
         }
 
         function getProjectById(projectId) {
-            var params = { params: { projectId: projectId } };
-            return $http.get(appSettings.comunicacao.urlBackend + 'work', + "/" + projectId, params);
+            var params = { params: { id: projectId } };
+            return $http.get(appSettings.comunicacao.urlBackend + 'work' + "/" + projectId, params);
         }
     }
 

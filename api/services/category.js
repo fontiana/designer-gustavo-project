@@ -15,7 +15,7 @@ exports.getFromId = function (req, res) {
 		connection.query('call spFetchCategoryById(?);', [id], function (err, result) {
 			if (err) return res.status(400).json(err);
 
-			return res.status(200).json(result[0]);
+			return res.status(200).json(result[0][0]);
 		});
 	});
 }
@@ -33,11 +33,11 @@ exports.insert = function (req, res) {
 }
 
 exports.update = function (req, res) {
-	var data = req.body.categoryDescription,
-		id = req.params.categoryId;
+	var description = req.body.description,
+		id = req.params.id;
 
 	req.getConnection(function (err, connection) {
-		connection.query('call spUpdateCategory(?, ?)', [data, id], function (err, result) {
+		connection.query('call spUpdateCategory(?, ?);', [description, id], function (err, result) {
 			if (err) return res.status(400).json(err);
 
 			return res.status(200).json(result);
@@ -46,7 +46,7 @@ exports.update = function (req, res) {
 }
 
 exports.delete = function (req, res) {
-	var id = req.params.categoryId;
+	var id = req.params.id;
 
 	req.getConnection(function (err, connection) {
 		connection.query('call spDeleteCategory(?);', [id], function (err, result) {

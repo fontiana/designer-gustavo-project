@@ -11,15 +11,15 @@
         var vm = this;
 
         vm.save = save;
-
+        vm.title = "Editar Categoria";
         init();
 
         function init() {
-            console.log($stateParams.categoryId);
             vm.categoryId = $stateParams.categoryId;
             categoryServices.getCategoryById(vm.categoryId)
                 .then(function (response) {
                     vm.description = response.data.CATEGORY_DESCRIPTION;
+                    vm.categoryId = response.data.CATEGORY_ID;
                 })
                 .catch(function (msg) {
                     console.log(msg);
@@ -28,10 +28,11 @@
 
         function save() {
             var parameters = {
-                description: vm.description
+                description: vm.description,
+                categoryId: vm.categoryId
             };
 
-            categoryServices.insertCategory(vm.categoryId, parameters)
+            categoryServices.updateCategory(vm.categoryId, parameters)
                 .then(function (response) {
                     console.log(response);
                 })

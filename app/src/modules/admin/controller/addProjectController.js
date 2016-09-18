@@ -7,13 +7,18 @@
 
     /** @ngInject */
     function addProjectCtrl(){
-        // var vm = this;
+        var vm = this;
         
+        vm.title = "Adicionar projeto";
+        vm.save = save;
         init();
 
         function init(){
         }
 
+        function save() {
+
+        }
     }
 
 }());

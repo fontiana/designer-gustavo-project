@@ -11,6 +11,7 @@
         var vm = this;
 
         vm.save = save;
+        vm.title = "Adicionar Categoria";
         vm.description = "";
 
         function save() {

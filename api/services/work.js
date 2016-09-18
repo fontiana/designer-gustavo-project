@@ -10,7 +10,7 @@ exports.get = function (req, res) {
 }
 
 exports.getFromId = function (req, res) {
-	var id = req.params.projectId;
+	var id = req.params.id;
 	req.getConnection(function (err, connection) {
 		connection.query('call db_dionisio.spFetchProjectByID(?);', [id], function (err, result) {
 			if (err) return res.status(400).json(err);

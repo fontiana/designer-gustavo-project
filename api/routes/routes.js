@@ -19,12 +19,12 @@ appRouter.route('/work/:id')
 //CATEGORY
 appRouter.route('/category')
 	.get(Category.get)
-	.post(Category.insert)
-	.put(Category.update);
+	.post(Category.insert);
 
 appRouter.route('/category/:id')
 	.get(Category.getFromId)
-	.delete(Category.delete);
+	.delete(Category.delete)
+	.put(Category.update);
 
 //CONFIG
 appRouter.route('/config')
