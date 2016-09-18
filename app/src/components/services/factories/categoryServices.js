@@ -35,8 +35,8 @@
         }
 
         function getCategoryById(categoryId) {
-            var params = { params: { categoryId: categoryId } };
-            return $http.get(appSettings.comunicacao.urlBackend + 'category', + "/" + categoryId, params);
+            var params = { params: { id: categoryId } };
+            return $http.get(appSettings.comunicacao.urlBackend + 'category' + "/" + categoryId, params);
         }
     }
 

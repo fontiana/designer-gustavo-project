@@ -30,7 +30,7 @@
                                     <span>{{category.CATEGORY_DESCRIPTION}}</span>
                                 </td>
                                 <td>
-                                    <a class="btn btn-default" ui-sref="editCategory({{category.CATEGORY_ID}})" href="{{category.hiperlink}}">
+                                    <a class="btn btn-default" ui-sref="editCategory({categoryId: category.CATEGORY_ID})" href="{{category.hiperlink}}">
                                         <span>Editar</span>
                                     </a>
                                     <a class="btn btn-default" ng-click="cCtrl.deleteCategory(category.CATEGORY_ID)">

@@ -3,10 +3,10 @@
 
     angular
         .module('baseApp.admin')
-        .controller('addEditProjectCtrl', addEditProjectCtrl)
+        .controller('addProjectCtrl', addProjectCtrl)
 
     /** @ngInject */
-    function addEditProjectCtrl(){
+    function addProjectCtrl(){
         // var vm = this;
         
         init();

@@ -15,6 +15,7 @@
         init();
 
         function init() {
+            console.log($stateParams.categoryId);
             vm.categoryId = $stateParams.categoryId;
             categoryServices.getCategoryById(vm.categoryId)
                 .then(function (response) {

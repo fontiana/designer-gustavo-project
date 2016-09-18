@@ -5,10 +5,10 @@
         .module('baseApp.work')
         .controller('workCtrl', workCtrl)
 
-    workCtrl.$inject = ["$http", "appSettings"];
+    workCtrl.$inject = ["projectServices"];
 
     /** @ngInject */
-    function workCtrl($http, appSettings) {
+    function workCtrl(projectServices) {
         var vm = this;
         init();
 
@@ -18,11 +18,10 @@
         }
 
         function loadCategories() {
-
         }
 
         function loadWorks() {
-            $http.get(appSettings.comunicacao.urlBackend + 'work')
+           projectServices.getProjects()
                 .then(workSuccess)
                 .catch(workError);
 

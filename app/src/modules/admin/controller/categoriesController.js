@@ -17,7 +17,13 @@
         function init() {
             categoryServices.getCategories()
                 .then(function (response) {
-                    vm.categories = response.data;
+                    var categories = [];
+                    angular.forEach(response.data, function (category) {
+                        category.hiperlink = "#admin/category/edit/" + category.CATEGORY_ID;
+                        categories.push(category);
+                    });
+
+                    vm.categories = categories;
                 })
                 .catch(function (msg) {
                     console.log(msg);
