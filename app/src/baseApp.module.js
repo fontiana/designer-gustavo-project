@@ -72,14 +72,14 @@
                 parent: "admin",
                 url: "/admin/projects/add",
                 templateUrl: '/admin/views/addEditProject.html',
-                controller: 'addEditProjectCtrl',
+                controller: 'addProjectCtrl',
                 controllerAs: 'pCtrl'
             })
             .state('editProject', {
                 parent: "admin",
                 url: "/admin/projects/edit/:projectId",
                 templateUrl: '/admin/views/addEditProject.html',
-                controller: 'addEditProjectCtrl',
+                controller: 'editProjectCtrl',
                 controllerAs: 'pCtrl'
             })
             .state('categories', {

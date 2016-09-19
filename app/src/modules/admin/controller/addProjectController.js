@@ -3,17 +3,22 @@
 
     angular
         .module('baseApp.admin')
-        .controller('addEditProjectCtrl', addEditProjectCtrl)
+        .controller('addProjectCtrl', addProjectCtrl)
 
     /** @ngInject */
-    function addEditProjectCtrl(){
+    function addProjectCtrl(){
         var vm = this;
         
+        vm.title = "Adicionar projeto";
+        vm.save = save;
         init();
 
         function init(){
         }
 
+        function save() {
+
+        }
     }
 
 }());

@@ -7,7 +7,6 @@
 
     /** @ngInject */
     function emailCtrl(){
-        var vm = this;
         
         init();
 

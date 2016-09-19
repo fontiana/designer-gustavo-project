@@ -11,6 +11,7 @@
         var vm = this;
 
         vm.save = save;
+        vm.title = "Adicionar Categoria";
         vm.description = "";
 
         function save() {
@@ -18,9 +19,9 @@
                 description: vm.description
             };
 
-            categoryServices.insertCategory(description)
+            categoryServices.insertCategory(parameters)
                 .then(function (response) {
-                    console.log(msg);
+                    console.log(response);
                 })
                 .catch(function (msg) {
                     console.log(msg);

@@ -16,6 +16,7 @@ gulp.task('static-analysis', function() {
         .pipe(eslint({configFile: '.eslintrc.json'}))
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
+        // .on('erro', function() { process.exit(); });
 });
 
 gulp.task('minifyJs', function () {
@@ -53,7 +54,6 @@ gulp.task('copyImages', function () {
   ])
     .pipe(gulp.dest(webImagesFolder));
 });
-
 
 gulp.task('minifyCSS', function () {
   gulp.src([

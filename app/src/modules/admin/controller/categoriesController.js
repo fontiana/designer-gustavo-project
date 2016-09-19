@@ -5,10 +5,10 @@
         .module('baseApp.admin')
         .controller('categoriesCtrl', categoriesCtrl)
 
-    categoriesCtrl.$inject = ["categoryServices"];
+    categoriesCtrl.$inject = ["categoryServices", "$state"];
 
     /** @ngInject */
-    function categoriesCtrl(categoryServices) {
+    function categoriesCtrl(categoryServices, $state) {
         var vm = this;
         vm.deleteCategory = deleteCategory;
 
@@ -17,7 +17,13 @@
         function init() {
             categoryServices.getCategories()
                 .then(function (response) {
-                    vm.categories = response.data;
+                    var categories = [];
+                    angular.forEach(response.data, function (category) {
+                        category.hiperlink = "#admin/category/edit/" + category.CATEGORY_ID;
+                        categories.push(category);
+                    });
+
+                    vm.categories = categories;
                 })
                 .catch(function (msg) {
                     console.log(msg);
@@ -26,7 +32,7 @@
 
         function deleteCategory(categoryId) {
             categoryServices.deleteCategory(categoryId)
-                .then(function (response) {
+                .then(function () {
                     $state.reload();
                 })
                 .catch(function (msg) {
