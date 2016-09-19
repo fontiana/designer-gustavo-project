@@ -1,5 +1,6 @@
 var bcrypt = require('bcrypt');
 var jwt = require('./jwt.js');
+var randomString = require("randomstring");
 
 exports.login = function (req, res) {
     req.getConnection(function (err, connection) {
@@ -26,7 +27,9 @@ exports.login = function (req, res) {
                         sub: user.email
                     };
 
-                    retorno.token = jwt.encode(payload, "senha");
+                    var secret = randomString.generate({ lengyth: 32});
+
+                    retorno.token = jwt.encode(payload, secret);
                     retorno.status = true;
 
                     return res.status(200).json(retorno);
