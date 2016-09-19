@@ -35,14 +35,14 @@
 
         function save() {
             var parameters = {
-                categoryId: categoryId,
-                name: name,
-                description: description,
-                coverImage: coverImage,
-                workId: workId
+                categoryId: vm.categoryId,
+                name: vm.name,
+                description: vm.description,
+                coverImage: vm.coverImage,
+                workId: vm.workId
             };
 
-            projectServices.updateProject(workId, parameters)
+            projectServices.updateProject(vm.workId, parameters)
                 .then(function (response) {
                     console.log(response);
                 })
