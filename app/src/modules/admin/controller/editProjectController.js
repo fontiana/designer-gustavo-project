@@ -22,6 +22,7 @@
                     vm.name = response.data.WORK_NAME;
                     vm.description = response.data.WORK_DESCRIPTION;
                     vm.categoryId = response.data.CATEGORY_ID;
+                    vm.workId = response.data.WORK_ID;
                     categoryServices.getCategories()
                         .then(function (response) {
                             vm.categories = response.data;
@@ -33,7 +34,21 @@
         }
 
         function save() {
+            var parameters = {
+                categoryId: categoryId,
+                name: name,
+                description: description,
+                coverImage: coverImage,
+                workId: workId
+            };
 
+            projectServices.updateProject(workId, parameters)
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (msg) {
+                    console.log(msg);
+                });
         }
     }
 

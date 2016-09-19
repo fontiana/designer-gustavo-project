@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(connection(mysql, {
     host: 'db-dionisio.mysql.uhserver.com',
     user: 'dionisio_user',
-    password: 'G316m42@',
+    password: '3s4d0f12@',
     database: 'db_dionisio'
 }, 'request'));
 app.use(express.static(path.join(__dirname, 'web')));
@@ -34,8 +34,8 @@ process.on('uncaughtException', function (err) {
 
 module.exports = app;
 
-app.set('port', process.env.PORT || 3000);
+// app.set('port', process.env.PORT || 3000);
 
-var server = app.listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + server.address().port);
-});
+// var server = app.listen(app.get('port'), function () {
+//     console.log('Express server listening on port ' + server.address().port);
+// });

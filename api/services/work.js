@@ -15,7 +15,7 @@ exports.getFromId = function (req, res) {
 		connection.query('call db_dionisio.spFetchProjectByID(?);', [id], function (err, result) {
 			if (err) return res.status(400).json(err);
 
-			return res.status(200).json(result[0]);
+			return res.status(200).json(result[0][0]);
 		});
 	});
 }
