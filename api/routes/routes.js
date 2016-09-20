@@ -9,12 +9,12 @@ var Category = getmodule('api/services/category');
 //WORK
 appRouter.route('/work')
 	.get(Works.get)
-	.post(Works.insert)
-	.put(Works.update);
+	.post(Works.insert);
 
 appRouter.route('/work/:id')
 	.get(Works.getFromId)
-	.delete(Works.delete);
+	.delete(Works.delete)
+	.put(Works.update);
 
 //CATEGORY
 appRouter.route('/category')
