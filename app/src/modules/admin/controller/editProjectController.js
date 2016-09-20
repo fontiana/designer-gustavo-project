@@ -5,10 +5,10 @@
         .module('baseApp.admin')
         .controller('editProjectCtrl', editProjectCtrl)
 
-    editProjectCtrl.$inject = ["projectServices", "categoryServices", "$stateParams"];
+    editProjectCtrl.$inject = ["projectServices", "categoryServices", "$stateParams", "Upload"];
 
     /** @ngInject */
-    function editProjectCtrl(projectServices, categoryServices, $stateParams) {
+    function editProjectCtrl(projectServices, categoryServices, $stateParams, Upload) {
         var vm = this;
 
         vm.title = "Editar Projeto";

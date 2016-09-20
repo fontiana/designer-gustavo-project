@@ -33,26 +33,50 @@ exports.delete = function (req, res) {
 
 exports.insert = function (req, res) {
     req.getConnection(function (err, connection) {
-        var projectId = req.body.projectId;
-		var resultado = "";
 
-        connection.query('call db_dionisio.spInsertProject(?);', [projectId], function (err, result) {
-			if (err) return res.status(400).json();
-			resultado = result[0];
-		});
+		connection.beginTransaction(function (err) {
+			if (err) { throw err; }
 
-		connection.query('call db_dionisio.spInsertImages(?);', [projectId], function (err, result) {
-			if (err) return res.status(400).json();
-			return res.status(200).json(result[0] + resultado);
+			connection.query('call db_dionisio.spInsertProject(?);', [projectId], function (err, result) {
+				if (err) {
+					connection.rollback(function () {
+						return res.status(400).json();
+					});
+				}
+				var projectId = result[0][0].WORD_ID;
+
+				connection.query('call db_dionisio.spInsertImages(?);', [projectId], function (err, result) {
+					if (err) {
+						connection.rollback(function () {
+							return res.status(400).json();
+						});
+					}
+
+					connection.commit(function (err) {
+						if (err) {
+							connection.rollback(function () {
+								throw err;
+							});
+						}
+						return res.status(200).json(result[0]);
+					});
+				});
+			});
 		});
     });
 }
 
 exports.update = function (req, res) {
     req.getConnection(function (err, connection) {
-        var projectId = req.body.projectId;
+		var work = {
+			name: req.body.name,
+			description: req.body.description,
+			categoryId: req.body.categoryId
 
-        connection.query('call db_dionisio.spUpdateProject(?);', [projectId], function (err, result) {
+		};
+        var id = req.params.id;
+
+        connection.query('call db_dionisio.spUpdateProject(?, ? ,? ,?);', [work.name, work.description, work.categoryId, id], function (err, result) {
 			if (err) return res.status(400).json();
 			return res.status(200).json(result[0]);
 		});
