@@ -5,10 +5,10 @@
         .module('baseApp.admin')
         .controller('projectsCtrl', projectsCtrl)
 
-    projectsCtrl.$inject = ["$http", "appSettings", "$state", "authToken"];
+    projectsCtrl.$inject = ["projectServices","$state", "authToken"];
 
     /** @ngInject */
-    function projectsCtrl($http, appSettings, $state, authToken) {
+    function projectsCtrl(projectServices, $state, authToken) {
         var vm = this;
 
         vm.deleteProject = deleteProject;
@@ -26,7 +26,7 @@
         }
 
         function loadProjects() {
-            $http.get(appSettings.comunicacao.urlBackend + 'work')
+            projectServices.getProjects()
                 .then(workSuccess)
                 .catch(workError);
 
@@ -46,8 +46,7 @@
         }
 
         function deleteProject(projectId) {
-            var params = { params: { projectId: projectId } };
-            $http.delete(appSettings.comunicacao.urlBackend + 'delete/' + projectId, params)
+            projectServices.deleteProject(projectId)
                 .then(workSuccess)
                 .catch(workError);
 

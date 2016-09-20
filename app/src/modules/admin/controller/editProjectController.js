@@ -23,6 +23,7 @@
                     vm.description = response.data.WORK_DESCRIPTION;
                     vm.categoryId = response.data.CATEGORY_ID;
                     vm.workId = response.data.WORK_ID;
+                    vm.coverImage = response.data.coverImage;
                     categoryServices.getCategories()
                         .then(function (response) {
                             vm.categories = response.data;

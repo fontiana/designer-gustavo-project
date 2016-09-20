@@ -22,7 +22,7 @@ exports.getFromId = function (req, res) {
 
 exports.delete = function (req, res) {
     req.getConnection(function (err, connection) {
-        var projectId = req.params.projectId
+        var projectId = req.params.id
 
         connection.query('call db_dionisio.spDeleteProject(?);', [projectId], function (err, result) {
 			if (err) return res.status(400).json();
@@ -33,17 +33,23 @@ exports.delete = function (req, res) {
 
 exports.insert = function (req, res) {
     req.getConnection(function (err, connection) {
+		var work = {
+			name: req.body.name,
+			description: req.body.description,
+			categoryId: req.body.categoryId,
+			coverImage: req.bod.coverImage
+		};
 
 		connection.beginTransaction(function (err) {
 			if (err) { throw err; }
 
-			connection.query('call db_dionisio.spInsertProject(?);', [projectId], function (err, result) {
+			connection.query('call db_dionisio.spInsertProject(?, ?, ?, ?);', [work.name, work.description, work.categoryId, work.coverImage], function (err, result) {
 				if (err) {
 					connection.rollback(function () {
 						return res.status(400).json();
 					});
 				}
-				var projectId = result[0][0].WORD_ID;
+				var projectId = result.insertId;
 
 				connection.query('call db_dionisio.spInsertImages(?);', [projectId], function (err, result) {
 					if (err) {
