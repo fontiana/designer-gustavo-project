@@ -5,10 +5,10 @@
         .module('baseApp.admin')
         .controller('addProjectCtrl', addProjectCtrl)
 
-    addProjectCtrl.$inject = ["projectServices", "categoryServices"];
+    addProjectCtrl.$inject = ["projectServices", "categoryServices", "fileUpload"];
 
     /** @ngInject */
-    function addProjectCtrl(projectServices, categoryServices) {
+    function addProjectCtrl(projectServices, categoryServices, fileUpload) {
         var vm = this;
 
         vm.title = "Adicionar projeto";
@@ -22,16 +22,18 @@
                 })
                 .catch(function (msg) {
                     console.log(msg);
-                })
+                });
         }
 
         function save() {
+            fileUpload.loadFile(vm.imagens);
+            fileUpload.loadFile(vm.loadMultipleFIles);
+
             var parameters = {
                 categoryId: vm.categoryId,
                 name: vm.name,
                 description: vm.description,
-                coverImage: vm.coverImage,
-                workId: vm.workId
+                coverImage: vm.coverImage
             };
 
             projectServices.insertProject(parameters)

@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(connection(mysql, {
     host: 'db-dionisio.mysql.uhserver.com',
     user: 'dionisio_user',
-    password: '3s4d0f12@',
+    password: 'b4c0nfrito@',
     database: 'db_dionisio'
 }, 'request'));
 app.use(express.static(path.join(__dirname, 'web')));

@@ -122,13 +122,17 @@
         'baseApp.work',
         'baseApp.admin',
         'baseApp.security',
-        'baseApp.services'
+        'baseApp.services',
+        'baseApp.fileUpload'
     ])
         .config(baseAppConfig)
         .constant('appSettings', {
             comunicacao: {
                 urlBackend: 'http://localhost:3000/',
                 urlAdmin: 'http://localhost:3000/admin/'
+            },
+            configuracao: {
+                caminhoImages: "imagens/projects/"
             }
         });
 

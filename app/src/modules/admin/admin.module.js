@@ -1,1 +1,1 @@
-angular.module('baseApp.admin', ['ngFileUpload']);
+angular.module('baseApp.admin', []);
