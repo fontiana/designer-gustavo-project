@@ -26,14 +26,18 @@
         }
 
         function save() {
-            fileUpload.loadFile(vm.imagens);
-            fileUpload.loadFile(vm.loadMultipleFIles);
+            fileUpload.loadFile(vm.coverImage);
+            fileUpload.loadMultipleFiles(vm.imagens);
+
+            var imagens = [];
+            imagens.push(vm.imagens.name);
 
             var parameters = {
                 categoryId: vm.categoryId,
                 name: vm.name,
                 description: vm.description,
-                coverImage: vm.coverImage
+                coverImage: vm.coverImage.name,
+                imagens: imagens
             };
 
             projectServices.insertProject(parameters)

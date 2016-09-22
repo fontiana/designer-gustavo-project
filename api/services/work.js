@@ -39,7 +39,7 @@ exports.insert = function (req, res) {
 			description: req.body.description,
 			categoryId: req.body.categoryId,
 			coverImage: req.body.coverImage,
-			images: req.body.images
+			imagens: req.body.imagens
 		};
 
 		connection.beginTransaction(function (err) {
@@ -51,11 +51,11 @@ exports.insert = function (req, res) {
 						return res.status(500).json();
 					});
 				}
-				var id = result.insertId;
+				var id = result[0][0].insertId;
 
-				for (let i = 0; i < work.images.length; i++) {
+				for (let i = 0; i < work.imagens.length; i++) {
 					var workImage = {
-						name: work.images[i].workName
+						name: work.imagens[i]
 					};
 
 					connection.query('call db_dionisio.spInsertImages(?, ?);', [id, workImage.name], function (err, result) {
@@ -85,15 +85,16 @@ exports.update = function (req, res) {
 		var work = {
 			name: req.body.name,
 			description: req.body.description,
-			categoryId: req.body.categoryId
-
+			categoryId: req.body.categoryId,
+			coverImage: req.body.coverImage,
+			imagens: req.body.imagens
 		};
         var id = req.params.id;
 
 		connection.beginTransaction(function (err) {
 			if (err) { throw err; }
 
-			connection.query('call db_dionisio.spUpdateProject(?, ? ,? ,?);', [work.name, work.description, work.categoryId, id], function (err, result) {
+			connection.query('call db_dionisio.spUpdateProject(?, ? ,? ,?);', [work.name, work.description, work.categoryId, work.coverImage, id], function (err, result) {
 				if (err) {
 					connection.rollback(function () {
 						return res.status(500).json();
@@ -108,9 +109,9 @@ exports.update = function (req, res) {
 					}
 				});
 
-				for (let i = 0; i < work.images.length; i++) {
+				for (let i = 0; i < work.imagens.length; i++) {
 					var workImage = {
-						name: work.images[i].workName
+						name: work.imagens[i]
 					};
 
 					connection.query('call db_dionisio.spInsertImages(?, ?);', [id, workImage.name], function (err, result) {

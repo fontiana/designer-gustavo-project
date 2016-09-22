@@ -11,24 +11,25 @@
 
         return {
             loadFile: loadFile,
-            loadMultipleFIles: loadMultipleFIles
+            loadMultipleFiles: loadMultipleFiles
         }
 
         function loadFile(file) {
-            Upload.upload({
-                url: appSettings.configuracao.caminhoImages,
-                data: { file: file }
-            }).then(function (resp) {
-                console.log('Successo ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            }, function (resp) {
-                console.log('Error status: ' + resp.status);
-            }, function (evt) {
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-            });
+            console.log(file);
+            // Upload.upload({
+            //     url: appSettings.configuracao.caminhoImages,
+            //     data: { file: file }
+            // }).then(function (resp) {
+            //     console.log('Successo ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            // }, function (resp) {
+            //     console.log('Error status: ' + resp.status);
+            // }, function (evt) {
+            //     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            //     console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            // });
         }
 
-        function loadMultipleFIles(files) {
+        function loadMultipleFiles(files) {
             console.log(files);
         }
     }

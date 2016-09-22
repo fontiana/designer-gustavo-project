@@ -16,6 +16,12 @@
 
 /* MENU AND SIDEBAR */
 
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 #wrapper {
     width: 100%;
 }
@@ -128,8 +134,30 @@
 }
 
 .view-actions {
-    margin: 3px 0 0;
+    margin: 25px 0 15px;
     float: right;
+}
+
+.navbar:after, .navbar:before {
+    content: " ";
+    display: table;
+}
+
+.btn-group-vertical>.btn-group:after, 
+.btn-toolbar:after, 
+.clearfix:after, 
+.container-fluid:after, 
+.container:after,
+ .dropdown-menu>li>a, 
+ .form-horizontal .form-group:after,
+  .modal-footer:after, 
+  .navbar-collapse:after,
+   .navbar-header:after, 
+   .navbar:after, 
+   .pager:after, 
+   .panel-body:after, 
+   .row:after {
+       clear: both;
 }
 
 .btn {

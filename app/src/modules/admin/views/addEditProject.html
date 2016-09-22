@@ -42,8 +42,8 @@
         </div>
         <div>
             <div class="form-field form-group">
-                <label for="coverImage" class="col-sm-2 control-label">Adicionar imagens</label>
-                <input type="file" class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7" ngf-select="" ng-model="pCtrl.imagens" ngf-multiple="multiple"/>
+                <label for="imagens" class="col-sm-2 control-label">Adicionar imagens</label>
+                <input type="file" class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7" ngf-select="" ng-model="pCtrl.imagens" ngf-multiple="multiple" ngf-accept="'image/*'"/>
                 <!--<img ngf-src="!pCtrl.imagens[0].$error && pCtrl.imagens[0]">-->
             </div>
         </div>
