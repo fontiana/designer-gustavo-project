@@ -1,5 +1,5 @@
 <ul class="work clearfix">
-    <a href="#" ng-repeat="work in wCtrl.works">
+    <a ui-sref="work({work: work.WORK_ID})" ng-repeat="work in wCtrl.works">
         <li>
             <p><img src="http://simonfosterdesign.com/home/wp-content/uploads/2016/02/tn_1.jpg" alt="{{work.WORK_NAME}}" width="800"
                     height="800" class="alignnone size-full wp-image-1303"></p>
