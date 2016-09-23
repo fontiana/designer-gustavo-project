@@ -16,7 +16,7 @@ exports.encode = function (payload, secret) {
 exports.decode = function (token, secret) {
     var segments = token.split('.');
 
-    if (segments.length !== 3) {
+    if (segments.length !== 2) {
         throw new Error("Token structure incorrect");
     }
 

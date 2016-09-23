@@ -29,13 +29,15 @@ appRouter.route('/category/:id')
 //CONFIG
 appRouter.route('/config')
 	.get(Config.get)
-	.put(Config.update);	
+	.put(Config.update);
 
 //ABOUT
 appRouter.route('/about')
-	.get(About.get)
-	.post(About.update);
+	.get(About.get);
 
+appRouter.route('/about/:id')
+	.put(About.update);
+	
 //ADMIN
 appRouter.route('/admin/login')
 	.post(Admin.login);

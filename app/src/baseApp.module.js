@@ -105,9 +105,9 @@
             })
             .state('manageAbout', {
                 parent: "admin",
-                url: "/admin/manageAbout",
-                templateUrl: '/admin/views/main.html',
-                controller: 'mainCtrl',
+                url: "/admin/about",
+                templateUrl: '/admin/views/about.html',
+                controller: 'manageAboutCtrl',
                 controllerAs: 'mCtrl'
             });
 
