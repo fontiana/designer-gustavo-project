@@ -27,8 +27,9 @@
             <div class="form-field form-group">
                 <label for="category" class="col-sm-2 control-label">Category</label>
                 <div class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7">
-                    <select name="category" id="category" ng-model="pCtrl.categoryId">
-                        <option ng-repeat="category in pCtrl.categories" value="{{category.CATEGORY_ID}}">{{category.CATEGORY_DESCRIPTION}}</option>
+                    <select name="category" id="category" ng-model="pCtrl.categoryId" 
+                    ng-options="category.CATEGORY_ID as (category.CATEGORY_DESCRIPTION) for category in pCtrl.categories">
+                        <option></option>
                     </select>
                 </div>
             </div>
@@ -36,14 +37,17 @@
         <div>
             <div class="form-field form-group">
                 <label for="coverImage" class="col-sm-2 control-label">Adicionar capa</label>
-                <input type="file" ngf-select="" class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7" ng-model="pCtrl.coverImage" name="coverImage" ngf-accept="'image/*'" required="">
+                <input type="file" ngf-select="" class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7" ng-model="pCtrl.coverImage" name="coverImage"
+                    ngf-accept="'image/*'" required="">
                 <!--<img ngf-src="pCtrl.coverImage" class="thumb">-->
             </div>
         </div>
         <div>
             <div class="form-field form-group">
                 <label for="imagens" class="col-sm-2 control-label">Adicionar imagens</label>
-                <input type="file" class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7" ngf-select="" ng-model="pCtrl.imagens" ngf-multiple="multiple" ngf-accept="'image/*'"/>
+                <input type="file" class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7"
+                 ngf-select="" ng-model="pCtrl.imagens" ngf-multiple="multiple"
+                    ngf-accept="'image/*'" />
                 <!--<img ngf-src="!pCtrl.imagens[0].$error && pCtrl.imagens[0]">-->
             </div>
         </div>

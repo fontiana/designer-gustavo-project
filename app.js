@@ -9,13 +9,13 @@ var routes = require("./api/routes/routes");
 var app = express();
 
 app.use(bodyParser.json());
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization, Accept');
     next();
-})
+});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(connection(mysql, {
     host: 'db-dionisio.mysql.uhserver.com',
@@ -35,7 +35,6 @@ process.on('uncaughtException', function (err) {
 module.exports = app;
 
 app.set('port', process.env.PORT || 3000);
-
 var server = app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + server.address().port);
 });

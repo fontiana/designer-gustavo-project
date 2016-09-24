@@ -21,12 +21,18 @@
         }
 
         function loadWorks() {
-           projectServices.getProjects()
+            projectServices.getProjects()
                 .then(workSuccess)
                 .catch(workError);
 
             function workSuccess(response) {
-                vm.works = response.data;
+                var projects = [];
+                angular.forEach(response.data, function (project) {
+                    project.hiperlink = "#work/" + project.WORK_ID;
+                    projects.push(project);
+                });
+
+                vm.works = projects;
             }
 
             function workError(msg) {

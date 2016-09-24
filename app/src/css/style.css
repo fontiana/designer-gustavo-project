@@ -166,8 +166,17 @@ h5 {
     font-size: 1.2em
 }
 
+.content {
+    width: 58%;
+    margin: 7em 0 0 0;
+}
+
+.category-portfolio .content {
+    margin: 3.2em 0;
+}
+
 .work p {
-    margin: 0
+    margin: 0;
 }
 
 @media (min-width: 700px) {

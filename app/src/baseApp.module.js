@@ -109,6 +109,13 @@
                 templateUrl: '/admin/views/about.html',
                 controller: 'manageAboutCtrl',
                 controllerAs: 'mCtrl'
+            })
+            .state('manageConfig', {
+                parent: "admin",
+                url: "/admin/config",
+                templateUrl: '/admin/views/config.html',
+                controller: 'manageConfigCtrl',
+                controllerAs: 'mCtrl'
             });
 
         $locationProvider.html5Mode(true);
@@ -123,7 +130,8 @@
         'baseApp.admin',
         'baseApp.security',
         'baseApp.services',
-        'baseApp.fileUpload'
+        'baseApp.fileUpload',
+        'baseApp.resources'
     ])
         .config(baseAppConfig)
         .constant('appSettings', {
@@ -132,7 +140,7 @@
                 urlAdmin: 'http://localhost:3000/admin/'
             },
             configuracao: {
-                caminhoImages: "imagens/projects/"
+                caminhoImages: "upload"
             }
         });
 

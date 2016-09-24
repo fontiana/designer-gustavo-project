@@ -62,18 +62,20 @@ exports.insert = function (req, res) {
 				}
 				var id = result[0][0].insertId;
 
-				for (let i = 0; i < work.imagens.length; i++) {
-					var workImage = {
-						name: work.imagens[i]
-					};
+				if (work.imagens !== "undefined") {
+					for (let i = 0; i < work.imagens.length; i++) {
+						var workImage = {
+							name: work.imagens[i]
+						};
 
-					connection.query('call db_dionisio.spInsertImages(?, ?);', [id, workImage.name], function (err, result) {
-						if (err) {
-							connection.rollback(function () {
-								return res.status(500).json();
-							});
-						}
-					});
+						connection.query('call db_dionisio.spInsertImages(?, ?);', [id, workImage.name], function (err, result) {
+							if (err) {
+								connection.rollback(function () {
+									return res.status(500).json();
+								});
+							}
+						});
+					}
 				}
 
 				connection.commit(function (err) {
@@ -118,18 +120,20 @@ exports.update = function (req, res) {
 					}
 				});
 
-				for (let i = 0; i < work.imagens.length; i++) {
-					var workImage = {
-						name: work.imagens[i]
-					};
+				if (work.imagens !== "undefined") {
+					for (let i = 0; i < work.imagens.length; i++) {
+						var workImage = {
+							name: work.imagens[i]
+						};
 
-					connection.query('call db_dionisio.spInsertImages(?, ?);', [id, workImage.name], function (err, result) {
-						if (err) {
-							connection.rollback(function () {
-								return res.status(500).json();
-							});
-						}
-					});
+						connection.query('call db_dionisio.spInsertImages(?, ?);', [id, workImage.name], function (err, result) {
+							if (err) {
+								connection.rollback(function () {
+									return res.status(500).json();
+								});
+							}
+						});
+					}
 				}
 
 				connection.commit(function (err) {

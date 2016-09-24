@@ -5,6 +5,7 @@ var About = getmodule('api/services/about');
 var Admin = getmodule('api/services/admin');
 var Config = getmodule('api/services/config');
 var Category = getmodule('api/services/category');
+var Upload = getmodule('api/services/upload');
 
 //WORK
 appRouter.route('/work')
@@ -42,4 +43,8 @@ appRouter.route('/about/:id')
 appRouter.route('/admin/login')
 	.post(Admin.login);
 
+//UPLOAD
+appRouter.route('/upload')
+	.post(Upload.upload);
+	
 module.exports = appRouter;
