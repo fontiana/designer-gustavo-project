@@ -28,7 +28,7 @@
             function workSuccess(response) {
                 var projects = [];
                 angular.forEach(response.data, function (project) {
-                    project.hiperlink = "#work/" + project.WORK_ID;
+                    project.hiperlink = "#workDetail/" + project.WORK_ID;
                     projects.push(project);
                 });
 

@@ -1,5 +1,5 @@
 var multer = require('multer');
-var caminhoImagens = './images/projects/';
+var caminhoImagens = './upload/';
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {

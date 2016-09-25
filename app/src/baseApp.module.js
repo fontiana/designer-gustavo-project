@@ -23,7 +23,7 @@
                 controller: 'workCtrl',
                 controllerAs: 'wCtrl'
             })
-            .state('work/:id', {
+            .state('workDetail', {
                 parent: "default",
                 url: "/work/:id",
                 templateUrl: '/work/views/work-details.html',

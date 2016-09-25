@@ -19,9 +19,9 @@
             projectServices.getProjectById(vm.projectId)
                 .then(function (response) {
                     vm.categoryId = response.data.CATEGORY_ID;
-                    vm.name = response.data.WORK_NAME;
-                    vm.description = response.data.DESCRIPTION;
-                    vm.imagens = response.data.imagens;
+                    vm.title = response.data.WORK_NAME;
+                    vm.description = response.data.WORK_DESCRIPTION;
+                    // vm.imagens = response.data.imagens;
                 })
                 .catch(function (msg) {
                     console.log(msg);

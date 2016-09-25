@@ -96,7 +96,6 @@ ul {
     text-align: center
 }
 
-
 .inner {
     width: 100em;
     max-width: 92%;
@@ -162,6 +161,11 @@ p {
     font-weight: 500
 }
 
+h4 {
+    font-size: 2em;
+    margin: 0.4em 0 0.8em 0
+}
+
 h5 {
     font-size: 1.2em
 }
@@ -177,6 +181,11 @@ h5 {
 
 .work p {
     margin: 0;
+}
+
+.hero {
+    margin: 0.8em auto 3.2em auto;
+    width: 92%
 }
 
 @media (min-width: 700px) {

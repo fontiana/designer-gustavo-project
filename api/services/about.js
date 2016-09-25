@@ -13,7 +13,7 @@ exports.update = function (req, res) {
 	var data = {
 		title: req.body.title,
 		description: req.body.description,
-		image: req.body.image,
+		aboutImage: req.body.image,
 	};
 
 	var	id = req.params.id;

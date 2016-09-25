@@ -1,8 +1,8 @@
 <article>
-    <img ng-repeat="imagem in wdCtrl.imagens" src="imagem.caminhoImagem"/>
+    <!--<img ng-repeat="imagem in wdCtrl.imagens" ng-src="{{imagem.caminhoImagem}}"/>-->
     <div class="inner clearfix">
         <div class="content right">
-            <h4 title="{{wdCtrl.title}}">{{wdCtrl.title}}</h4>
+            <h4 ng-attr-title="{{wdCtrl.title}}">{{wdCtrl.title}}</h4>
             <p>{{wdCtrl.description}}</p>
         </div>
     </div>
