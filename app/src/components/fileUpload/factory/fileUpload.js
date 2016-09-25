@@ -11,11 +11,11 @@
 
         return {
             loadFile: loadFile,
-            loadMultipleFiles: loadMultipleFiles
+            loadMultipleFiles: loadMultipleFiles,
+            loadFilePromise: loadFilePromise
         }
 
         function loadFile(file) {
-            console.log("teste");
             Upload.upload({
                 url: appSettings.comunicacao.urlBackend + "upload",
                 data: { file: file }
@@ -24,15 +24,18 @@
             }, function (resp) {
                 console.log('Error status: ' + resp.status);
             });
-            // , function (evt) {
-            //     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            //     console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-            // });
         }
 
         function loadMultipleFiles(files) {
             console.log("Não implementado");
             console.log(files);
+        }
+
+        function loadFilePromise(file) {
+            return Upload.upload({
+                url: appSettings.comunicacao.urlBackend + "upload",
+                data: { file: file }
+            });
         }
     }
 

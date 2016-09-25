@@ -1,6 +1,11 @@
+//LOADING INTERNAL DEPENDENCIES
 var bcrypt = require('bcryptjs');
 var jwt = require('./jwt.js');
+
+//LOADING DEPENDENCIES
 var randomString = require("randomstring");
+var session = require('express-session');
+var redisStore = require('connect-redis')(session);
 
 exports.login = function (req, res) {
     req.getConnection(function (err, connection) {

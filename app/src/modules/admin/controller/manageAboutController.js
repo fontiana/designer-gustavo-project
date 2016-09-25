@@ -5,9 +5,9 @@
         .module('baseApp.admin')
         .controller('manageAboutCtrl', manageAboutCtrl)
 
-    manageAboutCtrl.$inject = ['aboutServices'];
+    manageAboutCtrl.$inject = ['aboutServices', 'fileUpload'];
 
-    function manageAboutCtrl(aboutServices) {
+    function manageAboutCtrl(aboutServices, fileUpload) {
         var vm = this;
 
         vm.save = save;
@@ -27,19 +27,24 @@
         }
 
         function save() {
-            var parameters = {
-                title: vm.title,
-                aboutImage: vm.coverImage.name,
-                description: vm.description,
-                id: vm.aboutId
-            };
+            fileUpload.loadFilePromise(vm.coverImage)
+                .then(function () {
+                    var parameters = {
+                        title: vm.title,
+                        aboutImage: vm.coverImage.name,
+                        description: vm.description,
+                        id: vm.aboutId
+                    };
 
-            aboutServices.updateAbout(vm.aboutId, parameters)
-                .then(function() {
-                    console.log("Sucesso");
-                })
-                .catch(function(msg) {
-                    console.log(msg);
+                    aboutServices.updateAbout(vm.aboutId, parameters)
+                        .then(function () {
+                            console.log("Sucesso");
+                        })
+                        .catch(function (msg) {
+                            console.log(msg);
+                        });
+                }, function (resp) {
+                    console.log('Error status: ' + resp.status);
                 });
         }
 

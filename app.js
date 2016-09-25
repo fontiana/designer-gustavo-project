@@ -1,9 +1,11 @@
 require('getmodule');
-var express = require("express");
-var path = require('path');
-var bodyParser = require("body-parser");
-var mysql = require('mysql');
-var connection = require('express-myconnection');
+var express     = require("express");
+var path        = require('path');
+var bodyParser  = require("body-parser");
+var mysql       = require('mysql');
+var connection  = require('express-myconnection');
+// var redis    = require('redis');
+// var client   = redis.createClient();
 
 var routes = require("./api/routes/routes");
 var app = express();
