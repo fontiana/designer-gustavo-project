@@ -29,7 +29,9 @@ appRouter.route('/category/:id')
 
 //CONFIG
 appRouter.route('/config')
-	.get(Config.get)
+	.get(Config.get);
+
+appRouter.route('/config/:id')
 	.put(Config.update);
 
 //ABOUT

@@ -37,13 +37,6 @@
                 controller: 'aboutCtrl',
                 controllerAs: 'aCtrl'
             })
-            .state('email', {
-                parent: "default",
-                url: "/email",
-                templateUrl: '/email/views/email.html',
-                controller: 'emailCtrl',
-                controllerAs: 'eCtrl'
-            })
             .state('main', {
                 parent: "admin",
                 url: "/admin",
@@ -125,7 +118,6 @@
     angular.module('baseApp', [
         'ui.router',
         'baseApp.about',
-        'baseApp.email',
         'baseApp.work',
         'baseApp.admin',
         'baseApp.security',

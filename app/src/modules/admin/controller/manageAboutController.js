@@ -20,7 +20,6 @@
                     vm.coverImage = response.data.ABOUT_IMAGE;
                     vm.description = response.data.ABOUT_DESCRIPTION;
                     vm.aboutId = response.data.ABOUT_ID;
-                    console.log(vm.aboutId);
                 })
                 .catch(function (msg) {
                     console.log(msg);
@@ -29,15 +28,14 @@
 
         function save() {
             var parameters = {
-                title = vm.title,
-                aboutImage = vm.coverImage,
-                description = vm.description,
-                id = vm.aboutId
+                title: vm.title,
+                aboutImage: vm.coverImage.name,
+                description: vm.description,
+                id: vm.aboutId
             };
-            console.log(vm.aboutId);
 
             aboutServices.updateAbout(vm.aboutId, parameters)
-                .then(function(response) {
+                .then(function() {
                     console.log("Sucesso");
                 })
                 .catch(function(msg) {

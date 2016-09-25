@@ -105,22 +105,22 @@ exports.update = function (req, res) {
 		connection.beginTransaction(function (err) {
 			if (err) { throw err; }
 
-			connection.query('call db_dionisio.spUpdateProject(?, ? ,? ,?);', [work.name, work.description, work.categoryId, work.coverImage, id], function (err, result) {
+			connection.query('call db_dionisio.spUpdateProject(?, ? ,? ,?, ?);', [work.name, work.description, work.categoryId, work.coverImage, id], function (err, result) {
 				if (err) {
 					connection.rollback(function () {
 						return res.status(500).json();
 					});
 				}
 
-				connection.query('call db_dionisio.spDeleteImagesById(?);', [id], function (err, result) {
-					if (err) {
-						connection.rollback(function () {
-							return res.status(500).json();
-						});
-					}
-				});
+				if (work.imagens !== undefined) {
+					connection.query('call db_dionisio.spDeleteImagesById(?);', [id], function (err, result) {
+						if (err) {
+							connection.rollback(function () {
+								return res.status(500).json();
+							});
+						}
+					});
 
-				if (work.imagens !== "undefined") {
 					for (let i = 0; i < work.imagens.length; i++) {
 						var workImage = {
 							name: work.imagens[i]

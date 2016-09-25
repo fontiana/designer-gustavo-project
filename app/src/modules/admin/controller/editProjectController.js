@@ -17,6 +17,10 @@
 
         function init() {
             vm.projectId = $stateParams.projectId;
+            categoryServices.getCategories()
+                .then(function (response) {
+                    vm.categories = response.data;
+                });
             projectServices.getProjectById(vm.projectId)
                 .then(function (response) {
                     vm.name = response.data.WORK_NAME;
@@ -24,10 +28,6 @@
                     vm.categoryId = response.data.CATEGORY_ID;
                     vm.workId = response.data.WORK_ID;
                     vm.coverImage = response.data.coverImage;
-                    categoryServices.getCategories()
-                        .then(function (response) {
-                            vm.categories = response.data;
-                        });
                 })
                 .catch(function (msg) {
                     console.log(msg);
@@ -35,12 +35,16 @@
         }
 
         function save() {
+            var imagens = [];
+            imagens.push(vm.imagens.name);
+
             var parameters = {
                 categoryId: vm.categoryId,
                 name: vm.name,
                 description: vm.description,
-                coverImage: vm.coverImage,
-                workId: vm.workId
+                coverImage: vm.coverImage.name,
+                workId: vm.workId,
+                imagens: imagens
             };
 
             projectServices.updateProject(vm.workId, parameters)
