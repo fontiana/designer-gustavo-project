@@ -17,7 +17,9 @@
             aboutServices.getAbout()
                 .then(function (response) {
                     vm.title = response.data.ABOUT_TITLE;
-                    vm.coverImage = response.data.ABOUT_IMAGE;
+                    vm.coverImage = {
+                        name: response.data.ABOUT_IMAGE
+                    };
                     vm.description = response.data.ABOUT_DESCRIPTION;
                     vm.aboutId = response.data.ABOUT_ID;
                 })
