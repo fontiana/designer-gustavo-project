@@ -190,6 +190,10 @@
     padding-right: 42.5px;
 }
 
+.has-error.form-control {
+    border: 1px solid #da3131;
+}
+
 .form-horizontal textarea {
     height: 150px;
 }
