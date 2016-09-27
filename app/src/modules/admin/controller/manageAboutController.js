@@ -49,7 +49,5 @@
                     console.log('Error status: ' + resp.status);
                 });
         }
-
     }
-
 } ());

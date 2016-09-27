@@ -13,6 +13,8 @@
 
         vm.title = "Adicionar projeto";
         vm.save = save;
+        vm.uploadFiles = uploadFiles;
+        vm.imagens = [];
         init();
 
         function init() {
@@ -25,12 +27,17 @@
                 });
         }
 
+        function uploadFiles(projectImages, errFiles) {
+            vm.projectImages = projectImages;
+            vm.errFiles = errFiles;
+            angular.forEach(projectImages, function (file) {
+                fileUpload.loadFile(file);
+                imagens.push(file.name);
+            });
+        }
+
         function save() {
             fileUpload.loadFile(vm.coverImage);
-            fileUpload.loadMultipleFiles(vm.imagens);
-
-            var imagens = [];
-            imagens.push(vm.imagens.name);
 
             var parameters = {
                 categoryId: vm.categoryId,

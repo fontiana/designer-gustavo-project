@@ -13,12 +13,12 @@
 
         vm.login = login;
 
-        function login(email, senha) {
+        function login() {
             var configHttp = {
                 url: appSettings.comunicacao.urlAdmin + 'login',
                 data: {
-                    email: email,
-                    senha: senha
+                    email: vm.email,
+                    senha: vm.password
                 }
             };
 

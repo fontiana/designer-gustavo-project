@@ -16,7 +16,9 @@
             configServices.getConfig()
                 .then(function (response) {
                     vm.email = response.data.EMAIL_ADDRESS;
-                    vm.logo = response.data.LOGO_IMAGE;
+                    vm.logo = {
+                        name: response.data.LOGO_IMAGE
+                    };
                     vm.id = response.data.CONFIG_ID;
                 })
                 .catch(function (msg) {
