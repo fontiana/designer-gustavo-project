@@ -116,6 +116,7 @@
     }
 
     angular.module('baseApp', [
+        'ngAnimate',
         'ui.router',
         'baseApp.about',
         'baseApp.work',

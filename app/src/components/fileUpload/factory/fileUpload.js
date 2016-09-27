@@ -11,7 +11,6 @@
 
         return {
             loadFile: loadFile,
-            loadMultipleFiles: loadMultipleFiles,
             loadFilePromise: loadFilePromise
         }
 
@@ -24,11 +23,6 @@
             }, function (resp) {
                 console.log('Error status: ' + resp.status);
             });
-        }
-
-        function loadMultipleFiles(files) {
-            console.log("Não implementado");
-            console.log(files);
         }
 
         function loadFilePromise(file) {

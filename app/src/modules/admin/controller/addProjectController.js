@@ -5,18 +5,18 @@
         .module('baseApp.admin')
         .controller('addProjectCtrl', addProjectCtrl)
 
-    addProjectCtrl.$inject = ["projectServices", "categoryServices", "fileUpload"];
+    addProjectCtrl.$inject = ["projectServices", "categoryServices", "fileUpload", "cfpLoadingBar"];
 
     /** @ngInject */
-    function addProjectCtrl(projectServices, categoryServices, fileUpload) {
+    function addProjectCtrl(projectServices, categoryServices, fileUpload, cfpLoadingBar) {
         var vm = this;
+        var imagens = [];
 
         vm.title = "Adicionar projeto";
         vm.save = save;
         vm.uploadFiles = uploadFiles;
         vm.imagens = [];
         init();
-
         function init() {
             categoryServices.getCategories()
                 .then(function (response) {
@@ -31,8 +31,10 @@
             vm.projectImages = projectImages;
             vm.errFiles = errFiles;
             angular.forEach(projectImages, function (file) {
-                fileUpload.loadFile(file);
+                fileUpload.loadFilePromise(file);
+                cfpLoadingBar.start();
                 imagens.push(file.name);
+                vm.imagens.push("uploads/" + file.name);
             });
         }
 

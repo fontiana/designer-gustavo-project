@@ -1,1 +1,1 @@
-angular.module('baseApp.admin', []);
+angular.module('baseApp.admin', ['angular-loading-bar', 'cfp.loadingBar']);

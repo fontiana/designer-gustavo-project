@@ -28,7 +28,7 @@
                 <label for="category" class="col-sm-2 control-label">Category</label>
                 <div class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7 form-group">
                     <select name="category" id="category" ng-model="pCtrl.categoryId" ng-options="category.CATEGORY_ID as (category.CATEGORY_DESCRIPTION) for category in pCtrl.categories"
-                    required>
+                        required>
                         <option></option>
                     </select>
                 </div>
@@ -36,7 +36,7 @@
         </div>
         <div>
             <div class="form-field" ng-class="{ 'has-error' : userForm.coverImage.$invalid && !userForm.coverImage.$pristine }">
-                <label for="coverImage" class="col-sm-2 control-label">Adicionar capa</label>
+                <label for="coverImage" class="col-sm-2 control-label">Capa</label>
                 <div class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7 form-group">
                     <input type="text" id="coverImage" name="coverImage" disabled class="form-control col-md-3" ng-model="pCtrl.coverImage.name"
                         required/>
@@ -46,11 +46,18 @@
         </div>
         <div>
             <div class="form-field">
-                <label for="imagens" class="col-sm-2 control-label">Adicionar imagens</label>
+                <label for="imagens" class="col-sm-2 control-label">Imagens</label>
                 <div class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7 form-group">
                     <a class="btn btn-default" class="form-group" ngf-select="pCtrl.uploadFiles($files, $invalidFiles)" multiple ngf-accept="'image/*'">Importar</a>
                 </div>
-                <p>{{pCtrl.projectImages.length}}</p>
+            </div>
+        </div>
+        <div>
+            <div class="form-field">
+                <label for="imagens" class="col-sm-2 control-label"></label>
+                <div class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7 form-group">
+                    <img ng-src="{{imagem}}" ng-repeat="imagem in pCtrl.imagens" />
+                </div>
             </div>
         </div>
         <div class="form-group">

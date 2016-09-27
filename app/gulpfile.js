@@ -68,7 +68,9 @@ gulp.task('minifyCSS', function () {
 
 gulp.task('minifyDependenciesJs', function () {
   gulp.src([
+    'node_modules/angular-animate/angular-animate.min.js',
     'node_modules/ng-file-upload/dist/ng-file-upload.min.js',
+    'node_modules/angular-loading-bar/build/loading-bar.min.js'
   ])
     .pipe(plumber({
       handleError: function (err) {
@@ -83,6 +85,14 @@ gulp.task('minifyDependenciesJs', function () {
     .pipe(gulp.dest(webFolder));
 });
 
+gulp.task('minifyDependenciesCSS', function () {
+  gulp.src([
+    'node_modules/angular-loading-bar/build/loading-bar.min.css'
+  ])
+    .pipe(concat('dependencies.css'))
+    .pipe(gulp.dest(webFolder + '/css'));
+});
+
 gulp.task('watch', function () {
   gulp.watch('src/*.js', ['minifyJs']);
   gulp.watch('src/modules/**/*.js', ['minifyJs']);
@@ -91,7 +101,7 @@ gulp.task('watch', function () {
   gulp.watch('src/css/*.css', ['minifyCSS']);
 });
 
-gulp.task('default', ['static-analysis', 'minifyJs', 'minifyDependenciesJs', 'copyFiles', 'copyImages', 'minifyCSS', 'watch']);
+gulp.task('default', ['static-analysis', 'minifyJs', 'minifyDependenciesJs', 'minifyDependenciesCSS', 'copyFiles', 'copyImages', 'minifyCSS', 'watch']);
 
 // gulp.task('browser-sync', function () {
 //   browserSync.init({
