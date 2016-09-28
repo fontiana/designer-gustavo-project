@@ -1,5 +1,6 @@
 "use strict";
 var jwt = require('./jwt.js');
+var Q = require('Q');
 
 exports.get = function (req, res) {
 	req.getConnection(function (err, connection) {
@@ -14,18 +15,22 @@ exports.get = function (req, res) {
 exports.getFromId = function (req, res) {
 	var id = req.params.id;
 	req.getConnection(function (err, connection) {
-		connection.query('call db_dionisio.spFetchProjectByID(?);', [id], function (err, result) {
-			if (err) return res.status(400).json(err);
+		function fetchProjectById() {
+			var defered = Q.defer();
+			connection.query('call db_dionisio.spFetchProjectByID(?);', [id], defered.makeNodeResolver());
+			return defered.promise;
+		}
 
-			var project = result[0][0];
+		function fetchImageById() {
+			var defered = Q.defer();
+			connection.query('call db_dionisio.spFetchProjectImagesById(?);', [id], defered.makeNodeResolver());
+			return defered.promise;
+		}
 
-			connection.query('call db_dionisio.spFetchProjectImagesById(?);', [id], function (err, result) {
-				if (err) return res.status(400).json();
-
-				project.imagens = result[0][0];
-			});
-
-			return res.status(200).json(project);
+		Q.all([fetchProjectById(), fetchImageById()]).then(function (results) {
+			var result = results[0][0][0][0];
+			result.imagens = results[1][0][0];
+			return res.status(200).json(result);
 		});
 	});
 }

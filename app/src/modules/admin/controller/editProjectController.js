@@ -5,14 +5,17 @@
         .module('baseApp.admin')
         .controller('editProjectCtrl', editProjectCtrl)
 
-    editProjectCtrl.$inject = ["projectServices", "categoryServices", "$stateParams"];
+    editProjectCtrl.$inject = ["projectServices", "categoryServices", "$stateParams", "fileUpload", "cfpLoadingBar"];
 
     /** @ngInject */
-    function editProjectCtrl(projectServices, categoryServices, $stateParams) {
+    function editProjectCtrl(projectServices, categoryServices, $stateParams, fileUpload, cfpLoadingBar) {
         var vm = this;
+        var imagens = [];
 
         vm.title = "Editar Projeto";
         vm.save = save;
+        vm.uploadFiles = uploadFiles;
+        vm.imagens = [];
         init();
 
         function init() {
@@ -27,17 +30,30 @@
                     vm.description = response.data.WORK_DESCRIPTION;
                     vm.categoryId = response.data.CATEGORY_ID;
                     vm.workId = response.data.WORK_ID;
-                    vm.coverImage = response.data.coverImage;
+                    vm.coverImage = {
+                        name: response.data.WORK_COVER_IMAGE
+                    };
+                    angular.forEach(response.data.imagens, function (imagem) {
+                        vm.imagens.push("uploads/" + imagem.IMAGE_NAME);
+                    });
                 })
                 .catch(function (msg) {
                     console.log(msg);
                 });
         }
 
-        function save() {
-            var imagens = [];
-            imagens.push(vm.imagens.name);
+        function uploadFiles(projectImages, errFiles) {
+            vm.projectImages = projectImages;
+            vm.errFiles = errFiles;
+            angular.forEach(projectImages, function (file) {
+                fileUpload.loadFilePromise(file);
+                cfpLoadingBar.start();
+                imagens.push(file.name);
+                vm.imagens.push("uploads/" + file.name);
+            });
+        }
 
+        function save() {
             var parameters = {
                 categoryId: vm.categoryId,
                 name: vm.name,
