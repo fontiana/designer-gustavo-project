@@ -48,7 +48,7 @@
             <div class="form-field">
                 <label for="imagens" class="col-sm-2 control-label">Imagens</label>
                 <div class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7 form-group">
-                    <a class="btn btn-default" class="form-group" ngf-select="pCtrl.uploadFiles($files, $invalidFiles)" multiple ngf-accept="'image/*'">Importar</a>
+                    <a class="btn btn-default" class="form-group" ngf-select="pCtrl.uploadFiles($files)" ng-disabled="pCtrl.isLoading" multiple ngf-accept="'image/*'">Importar</a>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                 <label for="imagens" class="col-sm-2 control-label"></label>
                 <div class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7 form-group">
                     <input style="display:none" name="imagens" type="number" min=1 ng-model="pCtrl.imagens.length" />
-                    <div class="" ng-repeat="imagem in pCtrl.imagens">
+                    <div class="imageWrap" ng-repeat="imagem in pCtrl.imagens">
                         <img ng-src="{{imagem}}" alt="{{imagem}}"/>
                         <a class="btn btn-default" ng-click="pCtrl.removeImage(imagem)">Excluir</a>
                     </div>

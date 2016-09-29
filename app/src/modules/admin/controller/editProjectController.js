@@ -24,22 +24,23 @@
             categoryServices.getCategories()
                 .then(function (response) {
                     vm.categories = response.data;
-                });
-            projectServices.getProjectById(vm.projectId)
-                .then(function (response) {
-                    vm.name = response.data.WORK_NAME;
-                    vm.description = response.data.WORK_DESCRIPTION;
-                    vm.categoryId = response.data.CATEGORY_ID;
-                    vm.workId = response.data.WORK_ID;
-                    vm.coverImage = {
-                        name: response.data.WORK_COVER_IMAGE
-                    };
-                    angular.forEach(response.data.imagens, function (imagem) {
-                        vm.imagens.push("uploads/" + imagem.IMAGE_NAME);
-                    });
-                })
-                .catch(function (msg) {
-                    console.log(msg);
+                    projectServices.getProjectById(vm.projectId)
+                        .then(function (response) {
+                            vm.name = response.data.WORK_NAME;
+                            vm.description = response.data.WORK_DESCRIPTION;
+                            vm.categoryId = response.data.CATEGORY_ID;
+                            vm.workId = response.data.WORK_ID;
+                            vm.coverImage = {
+                                name: response.data.WORK_COVER_IMAGE
+                            };
+                            angular.forEach(response.data.imagens, function (imagem) {
+                                vm.imagens.push("uploads/" + imagem.IMAGE_NAME);
+                                imagens.push(imagem.IMAGE_NAME);
+                            });
+                        })
+                        .catch(function (msg) {
+                            console.log(msg);
+                        });
                 });
         }
 
@@ -49,14 +50,20 @@
             });
         }
 
-        function uploadFiles(projectImages, errFiles) {
-            vm.projectImages = projectImages;
-            vm.errFiles = errFiles;
-            angular.forEach(projectImages, function (file) {
-                fileUpload.loadFilePromise(file);
+        function uploadFiles(files) {
+            angular.forEach(files, function (file) {
+                vm.isLoading = true;
                 cfpLoadingBar.start();
-                imagens.push(file.name);
-                vm.imagens.push("uploads/" + file.name);
+                fileUpload.loadFilePromise(file)
+                    .then(function (resp) {
+                        imagens.push(file.name);
+                        vm.imagens.push("uploads/" + file.name);
+                        cfpLoadingBar.complete();
+                        vm.isLoading = false;
+                    }, function (resp) {
+                        cfpLoadingBar.complete();
+                        vm.isLoading = false;
+                    });
             });
         }
 

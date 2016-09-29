@@ -33,16 +33,27 @@
             vm.imagens = vm.imagens.filter(function (name) {
                 return name !== imageName;
             });
+            // imageName = imageName.indexOf("uploads/");
+            // imagens = imagens.filter(function (name) {
+            //     return name !== imageName;
+            // });
         }
 
-        function uploadFiles(projectImages, errFiles) {
-            vm.projectImages = projectImages;
-            vm.errFiles = errFiles;
-            angular.forEach(projectImages, function (file) {
-                fileUpload.loadFilePromise(file);
+        function uploadFiles(files) {
+            angular.forEach(files, function (file) {
+                vm.isLoading = true;
                 cfpLoadingBar.start();
-                imagens.push(file.name);
-                vm.imagens.push("uploads/" + file.name);
+                cfpLoadingBar.inc();
+                fileUpload.loadFilePromise(file)
+                    .then(function (resp) {
+                        imagens.push(file.name);
+                        vm.imagens.push("uploads/" + file.name);
+                        cfpLoadingBar.complete();
+                        vm.isLoading = false;
+                    }, function (resp) {
+                        cfpLoadingBar.complete();
+                        vm.isLoading = false;
+                    });
             });
         }
 

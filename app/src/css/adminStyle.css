@@ -233,9 +233,12 @@
     border-color: #2e6da4;
 }
 
-button[disabled=disabled], button:disabled {
-    background-color: #1b5c94;
-    color:#bababa;
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    cursor: not-allowed;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
 }
 
 .has-error .checkbox,
@@ -290,6 +293,11 @@ button[disabled=disabled], button:disabled {
     .col-md-8 {
         width: 66.66667%;
     }
+}
+
+.imageWrap {
+    float: left;
+    width: 20%;
 }
 
 @media (min-width: 768px) {

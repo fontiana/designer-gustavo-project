@@ -29,6 +29,7 @@
                 var projects = [];
                 angular.forEach(response.data, function (project) {
                     project.hiperlink = "#workDetail/" + project.WORK_ID;
+                    project.coverImage = "uploads/" + project.WORK_COVER_IMAGE;
                     projects.push(project);
                 });
 

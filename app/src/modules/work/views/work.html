@@ -1,7 +1,7 @@
 <ul class="work clearfix">
     <a ng-repeat="work in wCtrl.works" ui-sref="workDetail({id: work.WORK_ID})" href="{{work.hiperlink}}">
         <li>
-            <p><img src="http://simonfosterdesign.com/home/wp-content/uploads/2016/02/tn_1.jpg" alt="{{work.WORK_NAME}}" width="800"
+            <p><img src="{{work.coverImage}}" alt="{{work.WORK_NAME}}" width="800"
                     height="800" class="alignnone size-full wp-image-1303"></p>
             <div class="project_link">
                 <h3 title="{{work.WORK_NAME}}">{{work.WORK_NAME}}</h3>
