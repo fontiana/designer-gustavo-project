@@ -15,6 +15,7 @@
         vm.title = "Editar Projeto";
         vm.save = save;
         vm.uploadFiles = uploadFiles;
+        vm.removeImage = removeImage;
         vm.imagens = [];
         init();
 
@@ -40,6 +41,12 @@
                 .catch(function (msg) {
                     console.log(msg);
                 });
+        }
+
+        function removeImage(imageName) {
+            vm.imagens = vm.imagens.filter(function (name) {
+                return name !== imageName;
+            });
         }
 
         function uploadFiles(projectImages, errFiles) {

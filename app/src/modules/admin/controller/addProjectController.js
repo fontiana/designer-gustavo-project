@@ -15,8 +15,10 @@
         vm.title = "Adicionar projeto";
         vm.save = save;
         vm.uploadFiles = uploadFiles;
+        vm.removeImage = removeImage;
         vm.imagens = [];
         init();
+
         function init() {
             categoryServices.getCategories()
                 .then(function (response) {
@@ -25,6 +27,12 @@
                 .catch(function (msg) {
                     console.log(msg);
                 });
+        }
+
+        function removeImage(imageName) {
+            vm.imagens = vm.imagens.filter(function (name) {
+                return name !== imageName;
+            });
         }
 
         function uploadFiles(projectImages, errFiles) {

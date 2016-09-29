@@ -1,18 +1,16 @@
 var multer = require('multer');
-var caminhoImagens = './upload/';
+var caminhoImagens = './web/uploads';
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, caminhoImagens)
     },
     filename: function (req, file, cb) {
-        var datetimestamp = Date.now();
-        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
+        cb(null, file.originalname)
     }
 });
-var upload = multer({
-    storage: storage
-}).single('file');
+
+var upload = multer({ storage: storage }).single('file');
 
 exports.upload = function (req, res) {
     upload(req, res, function (err) {

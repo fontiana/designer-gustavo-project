@@ -9,6 +9,7 @@
   "author": "Victor Fontana",
   "license": "ISC",
   "dependencies": {
+    "Q": "0.0.1",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "connect-redis": "^3.1.0",
@@ -22,6 +23,7 @@
     "getmodule": "^1.0.0",
     "multer": "^1.2.0",
     "mysql": "^2.11.1",
+    "q": "^1.4.1",
     "randomstring": "^1.1.5",
     "redis": "^2.6.2"
   }
