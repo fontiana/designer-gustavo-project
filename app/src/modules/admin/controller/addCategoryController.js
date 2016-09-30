@@ -5,9 +5,9 @@
         .module('baseApp.admin')
         .controller('addCategoryCtrl', addCategoryCtrl)
 
-    addCategoryCtrl.$inject = ["categoryServices"];
+    addCategoryCtrl.$inject = ["categoryServices", "Flash"];
 
-    function addCategoryCtrl(categoryServices) {
+    function addCategoryCtrl(categoryServices, Flash) {
         var vm = this;
 
         vm.save = save;
@@ -20,11 +20,11 @@
             };
 
             categoryServices.insertCategory(parameters)
-                .then(function (response) {
-                    console.log(response);
+                .then(function () {
+                    Flash.create('success', "Categoria salva com sucesso.");
                 })
-                .catch(function (msg) {
-                    console.log(msg);
+                .catch(function () {
+                    Flash.create('danger', "Erro ao inserir categoria.");
                 });
         }
     }

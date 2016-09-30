@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    baseAppConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
+    baseAppConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'FlashProvider'];
 
-    function baseAppConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+    function baseAppConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, FlashProvider) {
         $urlRouterProvider.otherwise('/work');
 
         // States
@@ -113,6 +113,8 @@
 
         $locationProvider.html5Mode(true);
         $httpProvider.interceptors.push('authInterceptor');
+        FlashProvider.setTimeout(5000);
+        FlashProvider.setShowClose(true);
     }
 
     angular.module('baseApp', [

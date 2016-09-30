@@ -55,12 +55,12 @@
                 vm.isLoading = true;
                 cfpLoadingBar.start();
                 fileUpload.loadFilePromise(file)
-                    .then(function (resp) {
+                    .then(function () {
                         imagens.push(file.name);
                         vm.imagens.push("uploads/" + file.name);
                         cfpLoadingBar.complete();
                         vm.isLoading = false;
-                    }, function (resp) {
+                    }, function () {
                         cfpLoadingBar.complete();
                         vm.isLoading = false;
                     });

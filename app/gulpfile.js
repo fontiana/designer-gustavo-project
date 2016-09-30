@@ -70,7 +70,8 @@ gulp.task('minifyDependenciesJs', function () {
   gulp.src([
     'node_modules/angular-animate/angular-animate.min.js',
     'node_modules/ng-file-upload/dist/ng-file-upload.min.js',
-    'node_modules/angular-loading-bar/build/loading-bar.min.js'
+    'node_modules/angular-loading-bar/build/loading-bar.min.js',
+    'node_modules/angular-flash-alert/dist/angular-flash.min.js'
   ])
     .pipe(plumber({
       handleError: function (err) {
@@ -87,7 +88,8 @@ gulp.task('minifyDependenciesJs', function () {
 
 gulp.task('minifyDependenciesCSS', function () {
   gulp.src([
-    'node_modules/angular-loading-bar/build/loading-bar.min.css'
+    'node_modules/angular-loading-bar/build/loading-bar.min.css',
+    'node_modules/angular-flash-alert/dist/angular-flash.min.css'
   ])
     .pipe(concat('dependencies.css'))
     .pipe(gulp.dest(webFolder + '/css'));

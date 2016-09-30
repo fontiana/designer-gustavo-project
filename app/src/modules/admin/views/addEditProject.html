@@ -57,7 +57,7 @@
                 <label for="imagens" class="col-sm-2 control-label"></label>
                 <div class="ng-admin-type-string col-sm-10 col-md-8 col-lg-7 form-group">
                     <input style="display:none" name="imagens" type="number" min=1 ng-model="pCtrl.imagens.length" />
-                    <div class="imageWrap" ng-repeat="imagem in pCtrl.imagens">
+                    <div class="imageWrap repeat-item" ng-repeat="imagem in pCtrl.imagens">
                         <img ng-src="{{imagem}}" alt="{{imagem}}"/>
                         <a class="btn btn-default" ng-click="pCtrl.removeImage(imagem)">Excluir</a>
                     </div>
