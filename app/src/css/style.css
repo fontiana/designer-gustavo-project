@@ -166,21 +166,12 @@ p {
 }
 
 h4 {
-    font-size: 2em;
-    margin: 0.4em 0 0.8em 0
+    font-size: 1.2em;
+    margin: 0 0 0.8em 0;
 }
 
 h5 {
     font-size: 1.2em
-}
-
-.content {
-    width: 58%;
-    margin: 7em 0 0 0;
-}
-
-.category-portfolio .content {
-    margin: 3.2em 0;
 }
 
 .work p {
@@ -188,8 +179,8 @@ h5 {
 }
 
 .hero {
-    margin: 0.8em auto 3.2em auto;
-    width: 92%
+    margin: 0.8em auto 1.6em auto;
+    width: 92%;
 }
 
 @media (min-width: 700px) {
@@ -246,9 +237,18 @@ h5 {
     h4 {
         font-size: 1.6em
     }
+    .category-portfolio, .content {
+        margin: 3.2em 0;
+    }
+    .content {
+        width: 58%;
+    }
 }
 
 @media (min-width: 1250px) {
+    .hero {
+        margin: 0.8em auto 3.2em auto;
+    }
     .logo {
         max-width: 5em
     }

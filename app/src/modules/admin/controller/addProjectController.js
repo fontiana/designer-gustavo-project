@@ -58,22 +58,25 @@
         }
 
         function save() {
-            fileUpload.loadFile(vm.coverImage);
-
-            var parameters = {
-                categoryId: vm.categoryId,
-                name: vm.name,
-                description: vm.description,
-                coverImage: vm.coverImage.name,
-                imagens: imagens
-            };
-
-            projectServices.insertProject(parameters)
+            fileUpload.loadFilePromise(vm.coverImage)
                 .then(function () {
-                    Flash.create('success', "Projeto salvo com sucesso.");
-                })
-                .catch(function () {
-                    Flash.create('danger', "Erro ao inserir projeto.");
+                    var parameters = {
+                        categoryId: vm.categoryId,
+                        name: vm.name,
+                        description: vm.description,
+                        coverImage: vm.coverImage.name,
+                        imagens: imagens
+                    };
+
+                    projectServices.insertProject(parameters)
+                        .then(function () {
+                            Flash.create('success', "Projeto salvo com sucesso.");
+                        })
+                        .catch(function () {
+                            Flash.create('danger', "Erro ao inserir projeto.");
+                        });
+                }, function () {
+                    Flash.create('danger', "Erro ao tentar carregar arquivo.");
                 });
         }
     }

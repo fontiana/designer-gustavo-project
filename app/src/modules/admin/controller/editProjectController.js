@@ -69,21 +69,26 @@
         }
 
         function save() {
-            var parameters = {
-                categoryId: vm.categoryId,
-                name: vm.name,
-                description: vm.description,
-                coverImage: vm.coverImage.name,
-                workId: vm.workId,
-                imagens: imagens
-            };
-
-            projectServices.updateProject(vm.workId, parameters)
+            fileUpload.loadFilePromise(vm.coverImage)
                 .then(function () {
-                    Flash.create('success', "Projeto salvo com sucesso.");
-                })
-                .catch(function () {
-                    Flash.create('danger', "Erro ao atualizar o projeto.");
+                    var parameters = {
+                        categoryId: vm.categoryId,
+                        name: vm.name,
+                        description: vm.description,
+                        coverImage: vm.coverImage.name,
+                        workId: vm.workId,
+                        imagens: imagens
+                    };
+
+                    projectServices.updateProject(vm.workId, parameters)
+                        .then(function () {
+                            Flash.create('success', "Projeto salvo com sucesso.");
+                        })
+                        .catch(function () {
+                            Flash.create('danger', "Erro ao atualizar o projeto.");
+                        });
+                }, function () {
+                    Flash.create('danger', "Erro ao carregar capa. Tente novamente.");
                 });
         }
     }

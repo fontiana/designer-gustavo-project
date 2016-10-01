@@ -2,7 +2,6 @@
     'use strict';
 
     baseAppConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'FlashProvider'];
-
     function baseAppConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, FlashProvider) {
         $urlRouterProvider.otherwise('/work');
 
@@ -111,10 +110,21 @@
                 controllerAs: 'mCtrl'
             });
 
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(false);
         $httpProvider.interceptors.push('authInterceptor');
-        FlashProvider.setTimeout(5000);
+        FlashProvider.setTimeout(10000);
         FlashProvider.setShowClose(true);
+        $httpProvider.defaults.cache = true;
+    }
+
+    baseAppRun.$inject = ['$rootScope', 'Flash', 'context', 'utilities'];
+    function baseAppRun($rootScope, Flash, context, utilities) {
+        var sessionId = utilities.generateGuid();
+        context.addNewContextValue("sessionId", sessionId);
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
+            if (fromState === toState) return;
+            Flash.clear();
+        });
     }
 
     angular.module('baseApp', [
@@ -129,6 +139,7 @@
         'baseApp.resources'
     ])
         .config(baseAppConfig)
+        .run(baseAppRun)
         .constant('appSettings', {
             comunicacao: {
                 urlBackend: 'http://localhost:3000/',

@@ -15,6 +15,7 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization, Accept');
+    res.header('Cache-Control', 'max-age=3600');
     next();
 });
 
@@ -24,19 +25,19 @@ app.use(connection(mysql, {
     user: 'dionisio_user',
     password: 'b4c0nfrito@',
     database: 'db_dionisio'
-}, 'request'));
+}, 'single'));
 app.use(express.static(path.join(__dirname, 'web')));
 
 app.use('/', routes);
 
-process.on('uncaughtException', function (err) {
-    console.error(err.stack);
-    console.log("Node NOT Exiting...");
-});
+// process.on('uncaughtException', function (err) {
+//     console.error(err.stack);
+//     console.log("Node NOT Exiting...");
+// });
 
 module.exports = app;
 
-app.set('port', process.env.PORT || 3000);
-var server = app.listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + server.address().port);
-});
+// app.set('port', process.env.PORT || 3000);
+// var server = app.listen(app.get('port'), function () {
+//     console.log('Express server listening on port ' + server.address().port);
+// });
