@@ -19,9 +19,6 @@
                     vm.description = response.data.ABOUT_DESCRIPTION;
                     vm.title = response.data.ABOUT_TITLE;
                     vm.banner = appSettings.configuracao.caminhoImages + "/" + response.data.ABOUT_IMAGE;
-                })
-                .catch(function (msg) {
-                    console.log(msg);
                 });
         }
     }

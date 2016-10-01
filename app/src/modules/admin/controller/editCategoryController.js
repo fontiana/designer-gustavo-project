@@ -5,9 +5,9 @@
         .module('baseApp.admin')
         .controller('editCategoryCtrl', editCategoryCtrl)
 
-    editCategoryCtrl.$inject = ["categoryServices", "$stateParams"];
+    editCategoryCtrl.$inject = ["categoryServices", "$stateParams", "Flash"];
 
-    function editCategoryCtrl(categoryServices, $stateParams) {
+    function editCategoryCtrl(categoryServices, $stateParams, Flash) {
         var vm = this;
 
         vm.save = save;
@@ -21,8 +21,8 @@
                     vm.description = response.data.CATEGORY_DESCRIPTION;
                     vm.categoryId = response.data.CATEGORY_ID;
                 })
-                .catch(function (msg) {
-                    console.log(msg);
+                .catch(function () {
+                    Flash.create('danger', "Erro ao carregar informações.");
                 });
         }
 
@@ -33,11 +33,11 @@
             };
 
             categoryServices.updateCategory(vm.categoryId, parameters)
-                .then(function (response) {
-                    console.log(response);
+                .then(function () {
+                    Flash.create('success', "Categoria salva com sucesso.");
                 })
-                .catch(function (msg) {
-                    console.log(msg);
+                .catch(function () {
+                    Flash.create('danger', "Erro ao atualizar categoria.");
                 });
         }
     }

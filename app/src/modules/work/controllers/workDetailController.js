@@ -15,13 +15,15 @@
 
         function init() {
             vm.projectId = $stateParams.id;
-
+            vm.imagens = [];
             projectServices.getProjectById(vm.projectId)
                 .then(function (response) {
                     vm.categoryId = response.data.CATEGORY_ID;
                     vm.title = response.data.WORK_NAME;
                     vm.description = response.data.WORK_DESCRIPTION;
-                    // vm.imagens = response.data.imagens;
+                    angular.forEach(response.data.imagens, function (imagem) {
+                        vm.imagens.push("uploads/" + imagem.IMAGE_NAME);
+                    });
                 })
                 .catch(function (msg) {
                     console.log(msg);

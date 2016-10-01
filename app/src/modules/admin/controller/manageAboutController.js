@@ -5,9 +5,9 @@
         .module('baseApp.admin')
         .controller('manageAboutCtrl', manageAboutCtrl)
 
-    manageAboutCtrl.$inject = ['aboutServices', 'fileUpload'];
+    manageAboutCtrl.$inject = ['aboutServices', 'fileUpload', "Flash"];
 
-    function manageAboutCtrl(aboutServices, fileUpload) {
+    function manageAboutCtrl(aboutServices, fileUpload, Flash) {
         var vm = this;
 
         vm.save = save;
@@ -23,8 +23,8 @@
                     vm.description = response.data.ABOUT_DESCRIPTION;
                     vm.aboutId = response.data.ABOUT_ID;
                 })
-                .catch(function (msg) {
-                    console.log(msg);
+                .catch(function () {
+                    Flash.create('danger', "Erro ao carregar informações.");
                 });
         }
 
@@ -40,10 +40,10 @@
 
                     aboutServices.updateAbout(vm.aboutId, parameters)
                         .then(function () {
-                            console.log("Sucesso");
+                            Flash.create('success', "Página sobre atualizada com sucesso.");
                         })
-                        .catch(function (msg) {
-                            console.log(msg);
+                        .catch(function () {
+                            Flash.create('danger', "Erro ao atualizar a página sobre.");
                         });
                 }, function (resp) {
                     console.log('Error status: ' + resp.status);

@@ -5,9 +5,9 @@
         .module('baseApp.admin')
         .controller('manageConfigCtrl', manageConfigCtrl)
 
-    manageConfigCtrl.$inject = ["configServices"];
+    manageConfigCtrl.$inject = ["configServices", "Flash"];
 
-    function manageConfigCtrl(configServices) {
+    function manageConfigCtrl(configServices, Flash) {
         var vm = this;
         vm.save = save;
         init();
@@ -21,8 +21,8 @@
                     };
                     vm.id = response.data.CONFIG_ID;
                 })
-                .catch(function (msg) {
-                    console.log(msg);
+                .catch(function () {
+                    Flash.create('danger', "Erro ao carregar informações.");
                 });
         }
 
@@ -33,10 +33,10 @@
             };
             configServices.updateConfig(vm.id, parameters)
                 .then(function () {
-                    console.log("Sucesso");
+                    Flash.create('success', "Configuraçoes atualizadas com sucesso.");
                 })
-                .catch(function (msg) {
-                    console.log(msg);
+                .catch(function () {
+                    Flash.create('danger', "Erro ao atualizar o configuraçoes.");
                 });
         }
     }

@@ -5,10 +5,9 @@
         .module('baseApp.admin')
         .controller('addProjectCtrl', addProjectCtrl)
 
-    addProjectCtrl.$inject = ["projectServices", "categoryServices", "fileUpload", "cfpLoadingBar"];
+    addProjectCtrl.$inject = ["projectServices", "categoryServices", "fileUpload", "cfpLoadingBar", "Flash"];
 
-    /** @ngInject */
-    function addProjectCtrl(projectServices, categoryServices, fileUpload, cfpLoadingBar) {
+    function addProjectCtrl(projectServices, categoryServices, fileUpload, cfpLoadingBar, Flash) {
         var vm = this;
         var imagens = [];
 
@@ -24,8 +23,8 @@
                 .then(function (response) {
                     vm.categories = response.data;
                 })
-                .catch(function (msg) {
-                    console.log(msg);
+                .catch(function () {
+                    Flash.create('danger', "Erro ao carregar categorias.");
                 });
         }
 
@@ -53,6 +52,7 @@
                     }, function () {
                         cfpLoadingBar.complete();
                         vm.isLoading = false;
+                        Flash.create('danger', "Erro carregar arquivo.");
                     });
             });
         }
@@ -69,11 +69,11 @@
             };
 
             projectServices.insertProject(parameters)
-                .then(function (response) {
-                    console.log(response);
+                .then(function () {
+                    Flash.create('success', "Projeto salvo com sucesso.");
                 })
-                .catch(function (msg) {
-                    console.log(msg);
+                .catch(function () {
+                    Flash.create('danger', "Erro ao inserir projeto.");
                 });
         }
     }

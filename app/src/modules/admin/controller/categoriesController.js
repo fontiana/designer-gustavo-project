@@ -5,10 +5,10 @@
         .module('baseApp.admin')
         .controller('categoriesCtrl', categoriesCtrl)
 
-    categoriesCtrl.$inject = ["categoryServices", "$state"];
+    categoriesCtrl.$inject = ["categoryServices", "$state", "Flash"];
 
     /** @ngInject */
-    function categoriesCtrl(categoryServices, $state) {
+    function categoriesCtrl(categoryServices, $state, Flash) {
         var vm = this;
         vm.deleteCategory = deleteCategory;
 
@@ -25,8 +25,8 @@
 
                     vm.categories = categories;
                 })
-                .catch(function (msg) {
-                    console.log(msg);
+                .catch(function () {
+                    Flash.create('danger', "Erro ao recuperar categorias.");
                 });
         }
 
@@ -35,8 +35,8 @@
                 .then(function () {
                     $state.reload();
                 })
-                .catch(function (msg) {
-                    console.log(msg);
+                .catch(function () {
+                    Flash.create('danger', "Erro ao deletar categoria.");
                 });
         }
 

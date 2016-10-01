@@ -5,10 +5,10 @@
         .module('baseApp.admin')
         .controller('editProjectCtrl', editProjectCtrl)
 
-    editProjectCtrl.$inject = ["projectServices", "categoryServices", "$stateParams", "fileUpload", "cfpLoadingBar"];
+    editProjectCtrl.$inject = ["projectServices", "categoryServices", "$stateParams", "fileUpload", "cfpLoadingBar", "Flash"];
 
     /** @ngInject */
-    function editProjectCtrl(projectServices, categoryServices, $stateParams, fileUpload, cfpLoadingBar) {
+    function editProjectCtrl(projectServices, categoryServices, $stateParams, fileUpload, cfpLoadingBar, Flash) {
         var vm = this;
         var imagens = [];
 
@@ -38,8 +38,8 @@
                                 imagens.push(imagem.IMAGE_NAME);
                             });
                         })
-                        .catch(function (msg) {
-                            console.log(msg);
+                        .catch(function () {
+                            Flash.create('danger', "Erro carregar categorias.");
                         });
                 });
         }
@@ -63,6 +63,7 @@
                     }, function () {
                         cfpLoadingBar.complete();
                         vm.isLoading = false;
+                        Flash.create('danger', "Erro ao carregar arquivo.");
                     });
             });
         }
@@ -78,11 +79,11 @@
             };
 
             projectServices.updateProject(vm.workId, parameters)
-                .then(function (response) {
-                    console.log(response);
+                .then(function () {
+                    Flash.create('success', "Projeto salvo com sucesso.");
                 })
-                .catch(function (msg) {
-                    console.log(msg);
+                .catch(function () {
+                    Flash.create('danger', "Erro ao atualizar o projeto.");
                 });
         }
     }
