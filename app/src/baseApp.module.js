@@ -114,16 +114,28 @@
         $httpProvider.interceptors.push('authInterceptor');
         FlashProvider.setTimeout(10000);
         FlashProvider.setShowClose(true);
-        $httpProvider.defaults.cache = true;
+        $httpProvider.defaults.cache = false;
     }
 
     baseAppRun.$inject = ['$rootScope', 'Flash', 'context', 'utilities'];
     function baseAppRun($rootScope, Flash, context, utilities) {
-        var sessionId = utilities.generateGuid();
-        context.addNewContextValue("sessionId", sessionId);
+        if (angular.isUndefined(context.getContextValue("sessionId")) ||
+            context.getContextValue("sessionId") === "") {
+            var sessionId = utilities.generateGuid();
+            context.addNewContextValue("sessionId", sessionId);
+        }
+
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
             if (fromState === toState) return;
             Flash.clear();
+
+            // if (toState.match(/(admin)/)) {
+            //     var isAuthenticated = authToken.isAuthenticated();
+                
+            //     if (!isAuthenticated) {
+            //         $state.go('login');
+            //     }
+            // }
         });
     }
 

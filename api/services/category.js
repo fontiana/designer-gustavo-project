@@ -1,5 +1,3 @@
-var jwt = require('./jwt.js');
-
 exports.get = function (req, res) {
 	req.getConnection(function (err, connection) {
 		connection.query('call spFetchCategories();', [], function (err, result) {
@@ -21,27 +19,14 @@ exports.getFromId = function (req, res) {
 }
 
 exports.insert = function (req, res) {
-	// var token = req.headers.authorization.split(' ')[1];
-	// var payload = jwt.decode(token, 'secret');
+		var data = req.body.description;
+		req.getConnection(function (err, connection) {
+			connection.query('call spInsertCategory(?);', [data], function (err, result) {
+				if (err) return res.status(400).json(err);
 
-	// if (!payload.sub) {
-	// 	res.status(401).send({ message: 'Autenticação falhou' });
-	// }
-
-	// if (!req.headers.authorization) {
-	// 	return res.status(401).send({
-	// 		message: 'Você não está autorizado'
-	// 	});
-	// }
-	
-	var data = req.body.description;
-	req.getConnection(function (err, connection) {
-		connection.query('call spInsertCategory(?);', [data], function (err, result) {
-			if (err) return res.status(400).json(err);
-
-			return res.status(200).json(result);
+				return res.status(200).json(result);
+			});
 		});
-	});
 }
 
 exports.update = function (req, res) {

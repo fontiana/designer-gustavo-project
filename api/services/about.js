@@ -1,5 +1,3 @@
-var jwt = require('./jwt.js');
-
 exports.get = function (req, res) {
 	req.getConnection(function (err, connection) {
 		connection.query('call spFetchAbout();', [], function (err, result) {

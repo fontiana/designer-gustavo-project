@@ -10,36 +10,36 @@ var Upload = getmodule('api/services/upload');
 //WORK
 appRouter.route('/work')
 	.get(Works.get)
-	.post(Works.insert);
+	.post(Admin.checkUserRole, Works.insert);
 
 appRouter.route('/work/:id')
 	.get(Works.getFromId)
-	.delete(Works.delete)
-	.put(Works.update);
+	.delete(Admin.checkUserRole, Works.delete)
+	.put(Admin.checkUserRole, Works.update);
 
 //CATEGORY
 appRouter.route('/category')
 	.get(Category.get)
-	.post(Category.insert);
+	.post(Admin.checkUserRole, Category.insert);
 
 appRouter.route('/category/:id')
 	.get(Category.getFromId)
-	.delete(Category.delete)
-	.put(Category.update);
+	.delete(Admin.checkUserRole, Category.delete)
+	.put(Admin.checkUserRole, Category.update);
 
 //CONFIG
 appRouter.route('/config')
 	.get(Config.get);
 
 appRouter.route('/config/:id')
-	.put(Config.update);
+	.put(Admin.checkUserRole, Config.update);
 
 //ABOUT
 appRouter.route('/about')
 	.get(About.get);
 
 appRouter.route('/about/:id')
-	.put(About.update);
+	.put(Admin.checkUserRole, About.update);
 	
 //ADMIN
 appRouter.route('/admin/login')
@@ -47,6 +47,6 @@ appRouter.route('/admin/login')
 
 //UPLOAD
 appRouter.route('/upload')
-	.post(Upload.upload);
+	.post(Admin.checkUserRole, Upload.upload);
 	
 module.exports = appRouter;

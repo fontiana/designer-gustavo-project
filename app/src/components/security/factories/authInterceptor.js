@@ -15,10 +15,10 @@
 
         function request(config) {
             var token = authToken.getToken();
-
+            
+            config.headers["amc-sessionId"] = context.getContextValue("sessionId");
             if (token) {
                 config.headers.Authorization = 'Bearer ' + token;
-                config.headers["amc-sessionId"] = context.getContextValue("sessionId");
             }
 
             return config;

@@ -16,7 +16,7 @@ exports.encode = function (payload, secret) {
 exports.decode = function (token, secret) {
     var segments = token.split('.');
 
-    if (segments.length !== 2) {
+    if (segments.length !== 3) {
         throw new Error("Token structure incorrect");
     }
 
@@ -25,7 +25,7 @@ exports.decode = function (token, secret) {
 
     var rawSignature = segments[0] + '.' + segments[1];
     
-    if (verify(rawSignature, secret, segments[2])) {
+    if (!verify(rawSignature, secret, segments[2])) {
         throw new Error("Verification failed");
     }
 
