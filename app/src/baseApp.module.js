@@ -142,6 +142,7 @@
     angular.module('baseApp', [
         'ngAnimate',
         'ui.router',
+        'baseApp.exception',
         'baseApp.about',
         'baseApp.work',
         'baseApp.admin',

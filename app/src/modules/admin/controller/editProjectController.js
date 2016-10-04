@@ -48,6 +48,15 @@
             vm.imagens = vm.imagens.filter(function (name) {
                 return name !== imageName;
             });
+            imagens = imagens.filter(function (name) {
+                return !name.indexOf(imageName) > -1;
+            });
+        }
+
+        function checkExistence(name) {
+            return imagens.some(function (itemName) {
+                return itemName.indexOf(name) > -1
+            });
         }
 
         function uploadFiles(files) {
@@ -56,8 +65,10 @@
                 cfpLoadingBar.start();
                 fileUpload.loadFilePromise(file)
                     .then(function () {
-                        imagens.push(file.name);
-                        vm.imagens.push("uploads/" + file.name);
+                        if (!checkExistence) {
+                            imagens.push(file.name);
+                            vm.imagens.push("uploads/" + file.name);
+                        }
                         cfpLoadingBar.complete();
                         vm.isLoading = false;
                     }, function () {
