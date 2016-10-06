@@ -5,10 +5,10 @@
         .module('baseApp.admin')
         .controller('loginCtrl', loginCtrl)
 
-    loginCtrl.$inject = ["$http", 'appSettings', '$state', 'authToken'];
+    loginCtrl.$inject = ["$http", 'appSettings', '$state', 'authToken', 'Flash'];
 
     /** @ngInject */
-    function loginCtrl($http, appSettings, $state, authToken) {
+    function loginCtrl($http, appSettings, $state, authToken, Flash) {
         var vm = this;
 
         vm.login = login;
@@ -32,7 +32,7 @@
             }
 
             function loginError() {
-                console.log('Dados informados inválidos');
+                Flash.create('danger', "Dados informados inválidos.");
             }
         }
     }
