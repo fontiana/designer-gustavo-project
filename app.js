@@ -22,6 +22,10 @@ app.use(function (req, res, next) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(connection(mysql, {
+    host: 'db-dionisio.mysql.uhserver.com',
+    user: 'dionisio_user',
+    password: 'b4confrito@',
+    database: 'db_dionisio'
 }, 'single'));
 app.use(express.static(path.join(__dirname, 'web')));
 

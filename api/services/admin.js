@@ -4,8 +4,8 @@ var jwt = require('./jwt.js');
 
 //LOADING DEPENDENCIES
 var randomString = require("randomstring");
-var redis = require('redis');
-var client = redis.createClient();
+const NodeCache = require("node-cache");
+const myCache = new NodeCache({ stdTTL: 0 });
 
 exports.login = function (req, res) {
     req.getConnection(function (err, connection) {
@@ -45,7 +45,7 @@ exports.login = function (req, res) {
                         sessionId: sessionId,
                         secret: secret
                     });
-                    client.set('session', session);
+                    myCache.set("session", session);
 
                     return res.status(200).json(retorno);
                 };
@@ -58,8 +58,8 @@ exports.login = function (req, res) {
 
 exports.checkUserRole = function (req, res, next) {
     var token = req.headers.authorization.split(' ')[1];
-    
-    client.get('session', function (err, value) {
+
+    myCache.get("session", function (err, value) {
         if (err) { return false } else {
             var clientSession = JSON.parse(value);
 
@@ -67,16 +67,16 @@ exports.checkUserRole = function (req, res, next) {
                 var payload = jwt.decode(token, clientSession.secret);
 
                 if (!payload.sub) {
-                    res.status(400).json({message: "Autenticacao falhou."});
+                    res.status(400).json({ message: "Autenticacao falhou." });
                 }
 
                 if (!req.headers.authorization) {
-                    res.status(400).json({message: "Você não está autorizado."});
+                    res.status(400).json({ message: "Você não está autorizado." });
                 }
-                
+
                 next();
             } else {
-                res.status(400).json({message: "ID de sessão inválido."});
+                res.status(400).json({ message: "ID de sessão inválido." });
             }
         }
     });

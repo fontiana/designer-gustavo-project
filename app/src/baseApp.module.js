@@ -155,8 +155,8 @@
         .run(baseAppRun)
         .constant('appSettings', {
             comunicacao: {
-                urlBackend: 'http://localhost:8080/',
-                urlAdmin: 'http://localhost:8080/admin/'
+                urlBackend: 'http://localhost:3000/',
+                urlAdmin: 'http://localhost:3000/admin/'
             },
             configuracao: {
                 caminhoImages: "upload"
