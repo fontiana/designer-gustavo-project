@@ -1,0 +1,3 @@
+Log: Erro: Error: read ECONNRESET
+    at exports._errnoException (util.js:873:11)
+    at TCP.onread (net.js:557:26)

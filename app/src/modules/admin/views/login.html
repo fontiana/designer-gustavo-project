@@ -2,12 +2,12 @@
     <div class="login_form">
         <form name="userForm" ng-submit="lCtrl.login()" novalidate>
             <div ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
-                <input type="email" name="email" ng-model="lCtrl.email" placeholder="email" ng-maxlength="254" required>
+                <input class="input_login" type="email" name="email" ng-model="lCtrl.email" placeholder="email" ng-maxlength="254" required>
             </div>
             <div ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
-                <input type="password" name="password" ng-model="lCtrl.password" placeholder="senha" ng-minlength="6" ng-maxlength="50" required>
+                <input class="input_login" type="password" name="password" ng-model="lCtrl.password" placeholder="senha" ng-minlength="6" ng-maxlength="50" required>
             </div>
-            <input type="submit" value="Entrar" ng-disabled=!userForm.$valid>
+            <input class="btn_login" type="submit" value="Entrar" ng-disabled=!userForm.$valid>
         </form>
     </div>
 </div>

@@ -5,6 +5,7 @@ var bodyParser  = require("body-parser");
 var mysql       = require('mysql');
 var connection  = require('express-myconnection');
 
+var log    = require('./api/utils/log');
 var routes = require("./api/routes/routes");
 var app = express();
 
@@ -21,7 +22,6 @@ app.use(function (req, res, next) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(connection(mysql, {
-
 }, 'single'));
 app.use(express.static(path.join(__dirname, 'web')));
 
@@ -30,6 +30,7 @@ app.use('/', routes);
 process.on('uncaughtException', function (err) {
     console.error(err.stack);
     console.log("Node NOT Exiting...");
+    log.saveLog("Erro: " +  err.stack);
 });
 
 module.exports = app;
